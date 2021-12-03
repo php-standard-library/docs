@@ -3,6 +3,7 @@
 * [Home](/)
 * Components
   * [Async](components/async/)
+  * [Channel](components/channel/)
   * [Class](components/class/)
   * [Collection](components/collection/)
   * [DataStructure](components/data-structure/)
