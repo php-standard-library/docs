@@ -40,15 +40,27 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
   use Psl\Async;
 
   $result = Shell\execute('echo', arguments: ['Hello, World!'], timeout: 1.0); // Hello, World!
+  ```
 
-  // execute `sleep 1` in 4 different coroutines, with a timeout of 1.2 second.
+  `Shell\execute()` waits for the underlying process output in a non-blocking manner, this means that while a process is running, the script will not block, and allows other I/O operations to be performed.
+
+  This non-blocking nature is useful when you want to execute a lot of commands in parallel, and you don't want to block the script.
+
+  ```php
+  // execute `sleep 1` 4 times in parallel
   Async\parallel([
-    fn() => Shell\execute('sleep', arguments: ['1'], timeout: 1.2),
-    fn() => Shell\execute('sleep', arguments: ['1'], timeout: 1.2),
-    fn() => Shell\execute('sleep', arguments: ['1'], timeout: 1.2),
-    fn() => Shell\execute('sleep', arguments: ['1'], timeout: 1.2),
+    fn() => Shell\execute('sleep', arguments: ['1']),
+    fn() => Shell\execute('sleep', arguments: ['1']),
+    fn() => Shell\execute('sleep', arguments: ['1']),
+    fn() => Shell\execute('sleep', arguments: ['1']),
   ]);
+  ```
 
+  All commands in the example above will be executed in parallel, and the script will finish in ~1 second.
+
+  We can also set a timeout for the read operation, and if the process is still running after the timeout, `Shell\Exception\TimeoutException` will be thrown.
+
+  ```php
   try {
     Shell\execute('sleep', ['1'], timeout: 0.5);
   } catch (Shell\Exception\TimeoutException $e) {

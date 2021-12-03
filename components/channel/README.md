@@ -253,8 +253,8 @@ $message = $receiver->receive();
 
     Sends a message to the channel, waiting if the channel is full.
 
-    If the channel is full, this method waits until there is space for a message.
-    If the channel is closed, this method throws `Channel\Exception\ClosedChannelException`.
+    If the channel is full, this method waits until there is space for a message. <br />
+    If the channel is closed, this method throws `Channel\Exception\ClosedChannelException`. <br />
 
     ```php
     use Psl;
@@ -282,8 +282,8 @@ $message = $receiver->receive();
 
     Sends a message to the channel.
 
-    If the channel is full, this method throws `Channel\Exception\FullChannelException`.
-    If the channel is closed, this method throws `Channel\Exception\ClosedChannelException`.
+    If the channel is full, this method throws `Channel\Exception\FullChannelException`. <br />
+    If the channel is closed, this method throws `Channel\Exception\ClosedChannelException`. <br />
 
     ```php
     use Psl;
@@ -320,8 +320,8 @@ $message = $receiver->receive();
 
     Receives a message from the channel, waiting if the channel is empty.
 
-    If the channel is empty, this method waits until there is a message.
-    If the channel is closed and empty, this method throws `Channel\Exception\ClosedChannelException`.
+    If the channel is empty, this method waits until there is a message. <br />
+    If the channel is closed and empty, this method throws `Channel\Exception\ClosedChannelException`. <br />
 
     ```php
     use Psl;
@@ -351,8 +351,8 @@ $message = $receiver->receive();
 
     Receives a message from the channel.
 
-    If the channel is empty, this method throws `Channel\Exception\EmptyChannelException`.
-    If the channel is closed and empty, this method throws `Channel\Exception\ClosedChannelException`.
+    If the channel is empty, this method throws `Channel\Exception\EmptyChannelException`. <br />
+    If the channel is closed and empty, this method throws `Channel\Exception\ClosedChannelException`. <br />
 
     ```php
     use Psl;
