@@ -22,6 +22,50 @@ $message = $reciver->receive();
 
 ## API
 
+### Functions
+
+* `Channel\bounded<T>(positive-int $capacity): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}`
+
+    Create a bounded channel with the given capacity.
+
+    The created channel has space to hold at most `$capacity` messages at a time.
+
+    ```php
+    use Psl;
+    use Psl\Channel;
+
+    /**
+     * @var Channel\SenderInterface<string> $sender
+     * @var Channel\ReceiverInterface<string> $reciver
+     */
+    [$reciver, $sender] = Channel\bounded(1);
+
+    $sender->send('Hello');
+
+    Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
+    ```
+
+* `Channel\unbounded<T>(): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}`
+
+    Creates an unbounded channel.
+
+    The created channel can hold an unlimited number of messages.
+
+    ```php
+    use Psl;
+    use Psl\Channel;
+
+    /**
+     * @var Channel\SenderInterface<string> $sender
+     * @var Channel\ReceiverInterface<string> $reciver
+     */
+    [$reciver, $sender] = Channel\unbounded();
+
+    $sender->send('Hello');
+
+    Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
+    ```
+
 ### Interfaces
 
 * `Channel\ChannelInterface<T>`
@@ -420,48 +464,4 @@ $message = $reciver->receive();
     } catch (Channel\Exception\ClosedChannelException $e) {
         // Cannot send to a closed channel.
     }
-    ```
-
-### Functions
-
-* `Channel\bounded<T>(positive-int $capacity): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}`
-
-    Create a bounded channel with the given capacity.
-
-    The created channel has space to hold at most `$capacity` messages at a time.
-
-    ```php
-    use Psl;
-    use Psl\Channel;
-
-    /**
-     * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
-     */
-    [$reciver, $sender] = Channel\bounded(1);
-
-    $sender->send('Hello');
-
-    Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
-    ```
-
-* `Channel\unbounded<T>(): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}`
-
-    Creates an unbounded channel.
-
-    The created channel can hold an unlimited number of messages.
-
-    ```php
-    use Psl;
-    use Psl\Channel;
-
-    /**
-     * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
-     */
-    [$reciver, $sender] = Channel\unbounded();
-
-    $sender->send('Hello');
-
-    Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
     ```
