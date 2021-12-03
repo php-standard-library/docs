@@ -10,8 +10,8 @@ The channel component of PSL provides a way to create a channels for communicati
 use Psl\Channel;
 
 /**
- * @var Channel\SenderInterface<string> $sender
  * @var Channel\ReceiverInterface<string> $receiver
+ * @var Channel\SenderInterface<string> $sender
  */
 [$receiver, $sender] = Channel\unbounded();
 
@@ -56,8 +56,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\unbounded();
 
@@ -81,16 +81,16 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\unbounded();
 
     Psl\invariant(null === $receiver->getCapacity(), 'Capacity should be null');
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\bounded(10);
 
@@ -106,8 +106,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\unbounded();
 
@@ -133,8 +133,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\bounded(2);
 
@@ -150,8 +150,8 @@ $message = $receiver->receive();
     Psl\invariant(false === $receiver->isFull(), 'Channel should not be full');
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\unbounded();
 
@@ -167,8 +167,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\unbounded();
 
@@ -194,8 +194,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\unbounded();
 
@@ -231,8 +231,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\unbounded();
 
@@ -262,8 +262,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\bounded(1);
 
@@ -291,8 +291,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\bounded(1);
 
@@ -329,8 +329,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\bounded(1);
 
@@ -360,8 +360,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\bounded(1);
 
@@ -394,8 +394,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\bounded(1);
 
@@ -419,8 +419,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\bounded(1);
 
@@ -442,8 +442,8 @@ $message = $receiver->receive();
     use Psl\Channel;
 
     /**
-     * @var Channel\SenderInterface<string> $sender
      * @var Channel\ReceiverInterface<string> $receiver
+     * @var Channel\SenderInterface<string> $sender
      */
     [$receiver, $sender] = Channel\unbounded();
 
