@@ -17,6 +17,6 @@ composer require azjezz/psl:^2.0
 Psl provides an official Psalm plugin that provides further type enhancements:
 
 ```bash
-composer require php-standard-library/psalm-plugin --dev
-php vendor/bin/psalm-plugin enable php-standard-library/psalm-plugin
+composer require php-standard-library/psalm-plugin --dev && \
+    php vendor/bin/psalm-plugin enable php-standard-library/psalm-plugin
 ```

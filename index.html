@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
@@ -8,16 +9,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
+
 <body>
-  <div id="app"></div>
+  <div data-app id="main">Please wait...</div>
   <script>
     window.$docsify = {
+      search: 'auto',
       name: 'PHP Standard Library',
       repo: 'https://github.com/azjezz/psl',
-      loadSidebar: true
+      loadSidebar: true,
+      el: '#main',
+      auto2top: true,
+      plugins: [
+        function (hook, vm) {
+          hook.doneEach(function () {
+            Prism.highlightAll();
+          });
+        }
+      ]
     }
+
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-core.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
+
 </html>
