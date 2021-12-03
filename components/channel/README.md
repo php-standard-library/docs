@@ -11,13 +11,13 @@ use Psl\Channel;
 
 /**
  * @var Channel\SenderInterface<string> $sender
- * @var Channel\ReceiverInterface<string> $reciver
+ * @var Channel\ReceiverInterface<string> $receiver
  */
-[$reciver, $sender] = Channel\unbounded();
+[$receiver, $sender] = Channel\unbounded();
 
 $sender->send('Hello');
 
-$message = $reciver->receive();
+$message = $receiver->receive();
 ```
 
 ## API
@@ -36,13 +36,13 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\bounded(1);
+    [$receiver, $sender] = Channel\bounded(1);
 
     $sender->send('Hello');
 
-    Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
+    Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
     ```
 
 * `Channel\unbounded<T>(): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}`
@@ -57,13 +57,13 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\unbounded();
+    [$receiver, $sender] = Channel\unbounded();
 
     $sender->send('Hello');
 
-    Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
+    Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
     ```
 
 ### Interfaces
@@ -82,19 +82,19 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\unbounded();
+    [$receiver, $sender] = Channel\unbounded();
 
-    Psl\invariant(null === $reciver->getCapacity(), 'Capacity should be null');
+    Psl\invariant(null === $receiver->getCapacity(), 'Capacity should be null');
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\bounded(10);
+    [$receiver, $sender] = Channel\bounded(10);
 
-    Psl\invariant(10 === $reciver->getCapacity(), 'Capacity should be 10');
+    Psl\invariant(10 === $receiver->getCapacity(), 'Capacity should be 10');
     ```
 
   * `ChannelInterface::isEmpty(): bool`
@@ -107,19 +107,19 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\unbounded();
+    [$receiver, $sender] = Channel\unbounded();
 
-    Psl\invariant(true === $reciver->isEmpty(), 'Channel should be empty');
+    Psl\invariant(true === $receiver->isEmpty(), 'Channel should be empty');
 
     $sender->send('Hello');
 
-    Psl\invariant(false === $reciver->isEmpty(), 'Channel should not be empty');
+    Psl\invariant(false === $receiver->isEmpty(), 'Channel should not be empty');
 
-    $reciver->receive();
+    $receiver->receive();
 
-    Psl\invariant(true === $reciver->isEmpty(), 'Channel should be empty');
+    Psl\invariant(true === $receiver->isEmpty(), 'Channel should be empty');
     ```
 
   * `ChannelInterface::isFull(): bool`
@@ -134,28 +134,28 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\bounded(2);
+    [$receiver, $sender] = Channel\bounded(2);
 
-    Psl\invariant(false === $reciver->isFull(), 'Channel should not be full');
+    Psl\invariant(false === $receiver->isFull(), 'Channel should not be full');
 
     $sender->send('Hello');
     $sender->send('World');
 
-    Psl\invariant(true === $reciver->isFull(), 'Channel should be full');
+    Psl\invariant(true === $receiver->isFull(), 'Channel should be full');
 
-    $reciver->receive();
+    $receiver->receive();
 
-    Psl\invariant(false === $reciver->isFull(), 'Channel should not be full');
+    Psl\invariant(false === $receiver->isFull(), 'Channel should not be full');
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\unbounded();
+    [$receiver, $sender] = Channel\unbounded();
 
-    Psl\invariant(false === $reciver->isFull(), 'Unbound channel is never full.');
+    Psl\invariant(false === $receiver->isFull(), 'Unbound channel is never full.');
     ```
 
   * `ChannelInterface::count(): 0|positive-int`
@@ -168,19 +168,19 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\unbounded();
+    [$receiver, $sender] = Channel\unbounded();
 
-    Psl\invariant(0 === $reciver->count(), 'Channel should be empty');
+    Psl\invariant(0 === $receiver->count(), 'Channel should be empty');
 
     $sender->send('Hello');
 
-    Psl\invariant(1 === $reciver->count(), 'Channel should have 1 item');
+    Psl\invariant(1 === $receiver->count(), 'Channel should have 1 item');
 
-    $reciver->receive();
+    $receiver->receive();
 
-    Psl\invariant(0 === $reciver->count(), 'Channel should be empty');
+    Psl\invariant(0 === $receiver->count(), 'Channel should be empty');
     ```
 
   * `ChannelInterface::close(): void`
@@ -195,24 +195,24 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\unbounded();
+    [$receiver, $sender] = Channel\unbounded();
 
     $sender->send('Hello');
 
-    Psl\invariant(false === $reciver->isClosed(), 'Channel should not be closed');
+    Psl\invariant(false === $receiver->isClosed(), 'Channel should not be closed');
 
-    $reciver->close();
+    $receiver->close();
 
-    Psl\invariant(true === $reciver->isClosed(), 'Channel should be closed');
+    Psl\invariant(true === $receiver->isClosed(), 'Channel should be closed');
 
-    Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
+    Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
     
     try {
-        $reciver->receive();
+        $receiver->receive();
     } catch (Channel\Exception\ClosedChannelException $e) {
-        // Cannot recieve from a closed empty channel.
+        // Cannot receive from a closed empty channel.
     }
     
     try {
@@ -232,16 +232,16 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\unbounded();
+    [$receiver, $sender] = Channel\unbounded();
 
-    Psl\invariant(false === $reciver->isClosed(), 'Channel should not be closed');
+    Psl\invariant(false === $receiver->isClosed(), 'Channel should not be closed');
     Psl\invariant(false === $sender->isClosed(), 'Channel should not be closed');
 
-    $reciver->close();
+    $receiver->close();
 
-    Psl\invariant(true === $reciver->isClosed(), 'Channel should be closed');
+    Psl\invariant(true === $receiver->isClosed(), 'Channel should be closed');
     Psl\invariant(true === $sender->isClosed(), 'Channel should be closed');
     ```
 
@@ -263,15 +263,15 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\bounded(1);
+    [$receiver, $sender] = Channel\bounded(1);
 
     // Send a message to the channel immediately.
     $sender->send('Hello');
 
-    Async\Scheduler::delay(0.1, function () use ($reciver) {
-        Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
+    Async\Scheduler::delay(0.1, function () use ($receiver) {
+        Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
     });
 
     // Send a message to the channel, waiting if the channel is full.
@@ -292,15 +292,15 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\bounded(1);
+    [$receiver, $sender] = Channel\bounded(1);
 
     // Try to send a message to the channel immediately, without waiting.
     $sender->trySend('Hello');
 
-    Async\Scheduler::delay(0.1, function () use ($reciver) {
-        Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
+    Async\Scheduler::delay(0.1, function () use ($receiver) {
+        Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
     });
 
     try {
@@ -330,9 +330,9 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\bounded(1);
+    [$receiver, $sender] = Channel\bounded(1);
 
     $sender->send('Hello');
 
@@ -341,10 +341,10 @@ $message = $reciver->receive();
     });
 
     // Receive a message from the channel immediately.
-    Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
+    Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
 
     // Receive a message from the channel, waiting if the channel is empty.
-    Psl\invariant('World' === $reciver->receive(), 'Should receive "World"');
+    Psl\invariant('World' === $receiver->receive(), 'Should receive "World"');
     ```
 
   * `ReceiverInterface<T>::tryReceive(): ?T`
@@ -361,9 +361,9 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\bounded(1);
+    [$receiver, $sender] = Channel\bounded(1);
 
     $sender->send('Hello');
 
@@ -372,11 +372,11 @@ $message = $reciver->receive();
     });
 
     // Try to receive a message from the channel immediately, without waiting.
-    Psl\invariant('Hello' === $reciver->tryReceive(), 'Should receive "Hello"');
+    Psl\invariant('Hello' === $receiver->tryReceive(), 'Should receive "Hello"');
 
     try {
       // Try to receive a message from the channel immediately, without waiting.
-      $reciver->tryReceive();
+      $receiver->tryReceive();
     } catch (Channel\Exception\EmptyChannelException $e) {
         // Cannot receive from an empty channel.
         // The second message 'World' has not been sent yet.
@@ -395,9 +395,9 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\bounded(1);
+    [$receiver, $sender] = Channel\bounded(1);
 
     $sender->send('Hello');
 
@@ -420,13 +420,13 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\bounded(1);
+    [$receiver, $sender] = Channel\bounded(1);
 
     try {
         // Try to receive a message from the channel immediately, without waiting.
-        $reciver->tryReceive();
+        $receiver->tryReceive();
     } catch (Channel\Exception\EmptyChannelException $e) {
         // Cannot receive from an empty channel.
     }
@@ -443,20 +443,20 @@ $message = $reciver->receive();
 
     /**
      * @var Channel\SenderInterface<string> $sender
-     * @var Channel\ReceiverInterface<string> $reciver
+     * @var Channel\ReceiverInterface<string> $receiver
      */
-    [$reciver, $sender] = Channel\unbounded();
+    [$receiver, $sender] = Channel\unbounded();
 
     $sender->send('Hello');
 
-    $reciver->close();
+    $receiver->close();
 
-    Psl\invaraint('Hello' === $reciver->receive(), 'Should receive "Hello"');
+    Psl\invaraint('Hello' === $receiver->receive(), 'Should receive "Hello"');
 
     try {
-        $reciver->receive();
+        $receiver->receive();
     } catch (Channel\Exception\ClosedChannelException $e) {
-        // Cannot recieve from a closed empty channel.
+        // Cannot receive from a closed empty channel.
     }
 
     try {
