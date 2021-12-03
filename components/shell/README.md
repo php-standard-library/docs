@@ -72,7 +72,7 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
 
   Escape a command argument.
 
-  This function should only be used in combination with `Shell\execute()`, as the escape format is specific to the `Shell\execute()`.
+  This function should only be used in combination with `Shell\execute()`, as the escape format is specific to the `Shell\execute()` function.
 
   * `$argument`: The command argument to escape.
 
