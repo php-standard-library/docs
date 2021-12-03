@@ -347,7 +347,7 @@ $message = $receiver->receive();
     Psl\invariant('World' === $receiver->receive(), 'Should receive "World"');
     ```
 
-  * `ReceiverInterface<T>::tryReceive(): ?T`
+  * `ReceiverInterface<T>::tryReceive(): T`
 
     Receives a message from the channel.
 
