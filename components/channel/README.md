@@ -24,8 +24,14 @@ $message = $reciver->receive();
 
 ### Interfaces
 
-* `Channel\ChannelInterface<T> extends \Countable` - Common interface for all channel types.
-  * `ChannelInterface::getCapacity(): ?int` - Returns the capacity of the channel, or null if unbounded.
+* `Channel\ChannelInterface<T>`
+
+  Common interface for all channel types.
+
+  * `ChannelInterface::getCapacity(): null|0|positive-int`
+
+    Returns the capacity of the channel, or null if the channel is unbounded.
+
     ```php
     use Psl;
     use Psl\Channel;
@@ -47,7 +53,10 @@ $message = $reciver->receive();
     Psl\invariant(10 === $reciver->getCapacity(), 'Capacity should be 10');
     ```
 
-  * `ChannelInterface::isEmpty(): bool` - Returns true if the channel is empty.
+  * `ChannelInterface::isEmpty(): bool`
+
+    Returns true if the channel is empty, false otherwise.
+
     ```php
     use Psl;
     use Psl\Channel;
@@ -69,7 +78,12 @@ $message = $reciver->receive();
     Psl\invariant(true === $reciver->isEmpty(), 'Channel should be empty');
     ```
 
-  * `ChannelInterface::isFull(): bool` - Returns true if the channel is full.
+  * `ChannelInterface::isFull(): bool`
+
+    Returns true if the channel is full, false otherwise.
+
+    Unbounded channels are never full.
+
     ```php
     use Psl;
     use Psl\Channel;
@@ -100,7 +114,10 @@ $message = $reciver->receive();
     Psl\invariant(false === $reciver->isFull(), 'Unbound channel is never full.');
     ```
 
-  * `ChannelInterface::count(): int` - Returns the number of items in the channel.
+  * `ChannelInterface::count(): 0|positive-int`
+
+    Returns the number of items in the channel.
+
     ```php
     use Psl;
     use Psl\Channel;
@@ -122,7 +139,12 @@ $message = $reciver->receive();
     Psl\invariant(0 === $reciver->count(), 'Channel should be empty');
     ```
 
-  * `ChannelInterface::close(): void` - Closes the channel.
+  * `ChannelInterface::close(): void`
+
+    Closes the channel.
+
+    The remaining messages can still be received.
+
     ```php
     use Psl;
     use Psl\Channel;
@@ -156,7 +178,10 @@ $message = $reciver->receive();
     }
     ```
 
-  * `ChannelInterface::isClosed(): bool` - Returns true if the channel is closed.
+  * `ChannelInterface::isClosed(): bool`
+
+    Returns true if the channel is closed.
+
     ```php
     use Psl;
     use Psl\Channel;
@@ -176,8 +201,17 @@ $message = $reciver->receive();
     Psl\invariant(true === $sender->isClosed(), 'Channel should be closed');
     ```
 
-* `Channel\SenderInterface<T> extends Channel\ChannelInterface<T>` - Sender side of the channel
-  * `SenderInterface<T>::send(T $message): void` - Sends a message to the channel, waiting if the channel is full.
+* `Channel\SenderInterface<T> extends Channel\ChannelInterface<T>`
+
+  Sender side of the channel
+
+  * `SenderInterface<T>::send(T $message): void`
+
+    Sends a message to the channel, waiting if the channel is full.
+
+    If the channel is full, this method waits until there is space for a message.
+    If the channel is closed, this method throws `Channel\Exception\ClosedChannelException`.
+
     ```php
     use Psl;
     use Psl\Async;
@@ -200,7 +234,13 @@ $message = $reciver->receive();
     $sender->send('World');
     ```
 
-  * `SenderInterface<T>::trySend(T $message): void` - Sends a message to the channel.
+  * `SenderInterface<T>::trySend(T $message): void`
+
+    Sends a message to the channel.
+
+    If the channel is full, this method throws `Channel\Exception\FullChannelException`.
+    If the channel is closed, this method throws `Channel\Exception\ClosedChannelException`.
+
     ```php
     use Psl;
     use Psl\Async;
@@ -228,8 +268,17 @@ $message = $reciver->receive();
     }
     ```
 
-* `Channel\ReceiverInterface<T> extends Channel\ChannelInterface<T>` - Receiver side of the channel
-  * `ReceiverInterface<T>::receive(): T` - Receives a message from the channel, waiting if the channel is empty.
+* `Channel\ReceiverInterface<T> extends Channel\ChannelInterface<T>`
+
+  Receiver side of the channel
+
+  * `ReceiverInterface<T>::receive(): T`
+
+    Receives a message from the channel, waiting if the channel is empty.
+
+    If the channel is empty, this method waits until there is a message.
+    If the channel is closed and empty, this method throws `Channel\Exception\ClosedChannelException`.
+
     ```php
     use Psl;
     use Psl\Async;
@@ -254,7 +303,13 @@ $message = $reciver->receive();
     Psl\invariant('World' === $reciver->receive(), 'Should receive "World"');
     ```
 
-  * `ReceiverInterface<T>::tryReceive(): ?T` - Receives a message from the channel.
+  * `ReceiverInterface<T>::tryReceive(): ?T`
+
+    Receives a message from the channel.
+
+    If the channel is empty, this method throws `Channel\Exception\EmptyChannelException`.
+    If the channel is closed and empty, this method throws `Channel\Exception\ClosedChannelException`.
+
     ```php
     use Psl;
     use Psl\Async;
@@ -286,7 +341,10 @@ $message = $reciver->receive();
 
 ### Exceptions
 
-* `Channel\Exception\FullChannelException` - Thrown when calling `Channel\SenderInterface<T>::trySend()` on a full channel.
+* `Channel\Exception\FullChannelException`
+
+    Thrown when calling `Channel\SenderInterface<T>::trySend()` on a full channel.
+
     ```php
     use Psl;
     use Psl\Channel;
@@ -307,7 +365,10 @@ $message = $reciver->receive();
     }
     ```
 
-* `Channel\Exception\EmptyChannelException` - Thrown when calling `Channel\ReceiverInterface<T>::tryReceive()` on an empty channel.
+* `Channel\Exception\EmptyChannelException`
+
+    Thrown when calling `Channel\ReceiverInterface<T>::tryReceive()` on an empty channel.
+
     ```php
     use Psl;
     use Psl\Async;
@@ -327,7 +388,10 @@ $message = $reciver->receive();
     }
     ```
 
-* `Channel\Exception\ClosedChannelException` - Thrown when calling attempting to send or receive on a closed channel.
+* `Channel\Exception\ClosedChannelException`
+
+    Thrown when calling attempting to send or receive on a closed channel.
+
     ```php
     use Psl;
     use Psl\Async;
@@ -360,7 +424,12 @@ $message = $reciver->receive();
 
 ### Functions
 
-* `Channel\bounded<T>(int $capacity): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}` - Creates a bounded channel.
+* `Channel\bounded<T>(positive-int $capacity): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}`
+
+    Create a bounded channel with the given capacity.
+
+    The created channel has space to hold at most `$capacity` messages at a time.
+
     ```php
     use Psl;
     use Psl\Channel;
@@ -376,7 +445,12 @@ $message = $reciver->receive();
     Psl\invariant('Hello' === $reciver->receive(), 'Should receive "Hello"');
     ```
 
-* `Channel\unbounded<T>(): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}` - Creates an unbounded channel.
+* `Channel\unbounded<T>(): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}`
+
+    Creates an unbounded channel.
+
+    The created channel can hold an unlimited number of messages.
+
     ```php
     use Psl;
     use Psl\Channel;
