@@ -147,7 +147,7 @@ $password = $user['password'];
   use Psl\Type;
 
   try {
-    Json\typed('{'foo': 'bar'}', Type\string());
+    Json\typed("{'foo': 'bar'}", Type\string());
   } catch (Json\Exception\DecodeException $e) {
     // ... do something.
   }
