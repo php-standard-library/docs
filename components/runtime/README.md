@@ -84,7 +84,7 @@ if (Runtime\has_extension('parallel')) {
 
   * `$extension`: The name of the extension to check.
 
-  > This function is pure.
+  > This function does not cause any mutations.
 
   ```php
   use Psl\Runtime;
