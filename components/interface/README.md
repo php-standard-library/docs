@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The interface component provides multiple functions to retrieve information about interfaces.
+The interface component provides a set functions to retrieve information about interfaces.
 
 !> The `Interface` component is not a replacement for [PHP Reflection API](https://php.net/manual/en/book.reflection.php).
 

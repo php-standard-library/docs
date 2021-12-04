@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The html component provides multiple functions to encode and decode html strings.
+The html component provides a set functions to encode and decode html strings.
 
 ## Usage
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The trait component provides multiple functions to retrieve information about traits.
+The trait component provides a set functions to retrieve information about traits.
 
 !> The `Trait` component is not a replacement for [PHP Reflection API](https://php.net/manual/en/book.reflection.php).
 

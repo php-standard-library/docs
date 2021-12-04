@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The class component provides multiple functions to retrieve information about a class.
+The class component provides a set functions to retrieve information about a class.
 
 !> The `Class` component is not a replacement for [PHP Reflection API](https://php.net/manual/en/book.reflection.php).
 
