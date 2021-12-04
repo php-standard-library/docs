@@ -2,14 +2,15 @@
 
 ## Introduction
 
-The shell component serves as replacement for [shell_exec()](https://php.net/manual/en/function.shell-exec.php), [exec()](https://php.net/manual/en/function.exec.php), [system()](https://php.net/manual/en/function.system.php) functions. 
+The Shell component provides the ability to run shell commands in a subprocess, in a non-blocking manner.
 
-!> The shell component is not a replacement for [amphp/process](https//github.com/amphp/process), or [symfony/process](https://github.com/symfony/process).
+?> The Shell component serves as replacement for [shell_exec()](https://php.net/manual/en/function.shell-exec.php), [exec()](https://php.net/manual/en/function.exec.php), [system()](https://php.net/manual/en/function.system.php) functions.
+
+!> The Shell component is *not* a replacement for [amphp/process](https//github.com/amphp/process), or [symfony/process](https://github.com/symfony/process).
 
 ## Usage
 
 ```php
-use Psl;
 use Psl\Shell;
 
 $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
@@ -86,4 +87,67 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
   ];
 
   $result = Shell\execute($foo, arguments: $arguments, escape_arguments: false);
+  ```
+
+### Exceptions
+
+* `Shell\Exception\FailedExecutionException`
+
+  Thrown when the command returns a non-zero exit code.
+
+  ```php
+  use Psl\Shell;
+
+  try {
+    Shell\execute('php', arguments: ['-r', 'exit(1);'], timeout: 1.0);
+  } catch (Shell\Exception\FailedExecutionException $e) {
+    $exit_code = $e->getCode();
+    $stdout_content = $e->getOutput();
+    $stderr_content = $e->getErrorOutput();
+
+    // ... do something.
+  }
+
+  ```
+
+* `Shell\Exception\PossibleAttackException`
+
+  Thrown when the command being run is suspicious ( e.g: contains NULL byte ).
+
+  ```php
+  use Psl\Shell;
+
+  try {
+    Shell\execute('echo', arguments: ["Hello, World!\0"]);
+  } catch (Shell\Exception\PossibleAttackException $e) {
+    // ... do something.
+  }
+  ```
+
+* `Shell\Exception\RuntimeException`
+
+  Thrown when the `$working_directory` doesn't exist, or unable to create a new process.
+
+  ```php
+  use Psl\Shell;
+
+  try {
+    Shell\execute('echo', arguments: ['Hello, World!'], working_directory: '/foo/bar');
+  } catch (Shell\Exception\RuntimeException $e) {
+    // ... do something.
+  }
+  ```
+
+* `Shell\Exception\TimeoutException`
+
+  Thrown when the `$timeout` is reached before being able to read the process stream.
+
+  ```php
+  use Psl\Shell;
+
+  try {
+    Shell\execute('sleep', ['1'], timeout: 0.5);
+  } catch (Shell\Exception\TimeoutException $e) {
+    // ... do something.
+  }
   ```
