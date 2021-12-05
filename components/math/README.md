@@ -79,7 +79,7 @@ $c = Math\tan(2); // tan(2)
   ```php
   use Psl\Math;
 
-  $a = Math\sin(2); // sin(2) = 0.9092974268256817
+  $a = Math\sin(5.0); // -0.9589242746631385
   ```
 
 * `Math\cos(float $number): float`
@@ -93,7 +93,7 @@ $c = Math\tan(2); // tan(2)
   ```php
   use Psl\Math;
 
-  $a = Math\cos(2); // cos(2) = 0.8775825618903727161162815
+  $a = Math\cos(1.0); // 0.5403023058681398
   ```
 
 * `Math\tan(float $number): float`
@@ -107,7 +107,7 @@ $c = Math\tan(2); // tan(2)
   ```php
   use Psl\Math;
 
-  $a = Math\tan(2); // tan(2) = 1.5574077246549023
+  $a = Math\tan(4.8); // -11.384870654242922
   ```
 
 * `Math\asin(float $number): float`
@@ -121,7 +121,7 @@ $c = Math\tan(2); // tan(2)
   ```php
   use Psl\Math;
 
-  $a = Math\asin(2); // asin(2) = 1.5707963267948966192313216916398
+  $a = Math\asin(0.5); // 0.5235987755982989
   ```
 
 * `Math\acos(float $number): float`
@@ -135,7 +135,7 @@ $c = Math\tan(2); // tan(2)
   ```php
   use Psl\Math;
 
-  $a = Math\acos(2); // acos(2) = 1.0471975511965977461542144610932
+  $a = Math\acos(0.5); // 1.0471975511965979
   ```
 
 * `Math\atan(float $number): float`
@@ -149,7 +149,7 @@ $c = Math\tan(2); // tan(2)
   ```php
   use Psl\Math;
 
-  $a = Math\atan(2); // atan(2) = 0.4636476090008061
+  $a = Math\atan(-0.5); // -0.4636476090008061
   ```
 
 * `Math\atan2(float $y, float $x): float`
@@ -165,7 +165,7 @@ $c = Math\tan(2); // tan(2)
   ```php
   use Psl\Math;
 
-  $a = Math\atan2(2, 2); // atan2(2, 2) = 1.1071487177940904
+  $a = Math\atan2(1.0, 0.8); // 0.8960553845713439
   ```
 
 * `Math\abs<T of int|float>(T $number): T`
@@ -179,10 +179,10 @@ $c = Math\tan(2); // tan(2)
   ```php
   use Psl\Math;
 
-  $a = Math\abs(2); // abs(2) = 2
-  $b = Math\abs(-2); // abs(-2) = 2
-  $c = Math\abs(2.5); // abs(2.5) = 2.5
-  $d = Math\abs(-2.5); // abs(-2.5) = 2.5
+  $a = Math\abs(2);     // 2
+  $b = Math\abs(-2);    // 2
+  $c = Math\abs(2.5);   // 2.5
+  $d = Math\abs(-2.5);  // 2.5
   ```
 
 * `Math\ceil(float $number): float`
@@ -196,10 +196,10 @@ $c = Math\tan(2); // tan(2)
   ```php
   use Psl\Math;
 
-  $a = Math\ceil(2); // ceil(2) = 2.0
-  $b = Math\ceil(-2); // ceil(-2) = -2.0
-  $c = Math\ceil(2.5); // ceil(2.5) = 3.0
-  $d = Math\ceil(-2.5); // ceil(-2.5) = -2.0
+  $a = Math\ceil(2);      // 2.0
+  $b = Math\ceil(-2);     // -2.0
+  $c = Math\ceil(2.5);    // 3.0
+  $d = Math\ceil(-2.5);   // -2.0
   ```
 
 * `Math\floor(float $number): float`
@@ -213,10 +213,10 @@ $c = Math\tan(2); // tan(2)
   ```php
   use Psl\Math;
 
-  $a = Math\floor(2); // floor(2) = 2.0
-  $b = Math\floor(-2); // floor(-2) = -2.0
-  $c = Math\floor(2.5); // floor(2.5) = 2.0
-  $d = Math\floor(-2.5); // floor(-2.5) = -3.0
+  $a = Math\floor(2);     // 2.0
+  $b = Math\floor(-2);    // -2.0
+  $c = Math\floor(2.5);   // 2.0
+  $d = Math\floor(-2.5);  // -3.0
   ```
 
 * `Math\round(float $number, int $precision = 0): float`
