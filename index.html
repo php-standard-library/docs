@@ -3,11 +3,126 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>PHP Standard Library</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
+  <meta name="description" content="PHP Standard Library documentation">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    :root {
+      --theme-color: #8494a4;
+      --theme-color-dark: #31485e;
+
+      --text-color-base: #2e2e46;
+      --text-color-secondary: #646473;
+      --text-color-tertiary: #81818e;
+    }
+
+    body {
+      font-size: 100%;
+      line-height: 1.5;
+      color: var(--text-color-base);
+    }
+
+    * {
+      text-decoration: none !important;
+    }
+
+    a {
+      transition: all 0.3s linear;
+    }
+
+    .github-corner {
+      z-index: 5;
+    }
+
+    .sidebar .app-name-link img {
+      height: 150px;
+    }
+
+    .sidebar ul li a {
+      font-size: 15px;
+    }
+
+    .sidebar ul li a:hover {
+      color: var(--theme-color);
+    }
+
+    .app-sub-sidebar li:before {
+      display: none;
+    }
+
+    .sidebar .search .clear-button {
+      cursor: pointer;
+    }
+
+    .sidebar-toggle {
+      cursor: pointer;
+    }
+
+    body .sidebar-toggle {
+      background: none;
+      top: 1.5rem;
+      left: calc(300px + 1.5rem);
+      cursor: pointer;
+      width: 1.5rem;
+      height: 1.5rem;
+      padding: 0;
+      transition: left 0.25s ease-out;
+    }
+
+    body .sidebar-toggle span {
+      background-color: var(--theme-color);
+      height: 0.2rem;
+      width: 1.5rem;
+      position: absolute;
+      left: 0;
+      margin: 0;
+      transform-origin: 0;
+      border-radius: 1px;
+    }
+
+    body.close .sidebar-toggle {
+      transition: left 0.25s ease-out;
+      width: 1.5rem;
+      height: 1.5rem;
+      left: 1.5rem;
+    }
+
+    body.close .sidebar-toggle span {
+      transform-origin: center;
+    }
+
+    body .sidebar-toggle span:nth-child(1) {
+      top: 0;
+    }
+
+    body .sidebar-toggle span:nth-child(2) {
+      top: 0.5rem;
+    }
+
+    body .sidebar-toggle span:nth-child(3) {
+      top: 1rem;
+    }
+
+    .sidebar-toggle:hover {
+      opacity: 0.8;
+    }
+
+    .sidebar-toggle .sidebar-toggle-button:hover {
+      opacity: 1;
+    }
+
+    @media screen and (max-width: 768px) {
+      body .sidebar-toggle {
+        left: 1rem;
+      }
+
+      body.close .sidebar-toggle {
+        left: calc(300px + 1.5rem);
+      }
+    }
+  </style>
 </head>
 
 <body>
