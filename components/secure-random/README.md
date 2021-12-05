@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The SecureRandom component a set multiple functions to generate cryptographically secure random numbers, strings, and bytes.
+The SecureRandom component is a set of multiple functions to generate cryptographically secure random numbers, strings, and bytes.
 
 ?> The SecureRandom component is meant as a direct replacement for PHP [`random_bytes()`](https://secure.php.net/manual/en/function.random-bytes.php) and [`random_int()`](https://secure.php.net/manual/en/function.random-int.php) functions.
 
