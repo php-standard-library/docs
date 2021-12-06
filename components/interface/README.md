@@ -24,11 +24,13 @@ Psl\invariant(false === Interface\defined(BazInterface::class), '"BazInterface" 
 
 ### Functions
 
-* `Interface\defined(string $interface_name): bool`
+* [`Interface\defined(string $interface_name): bool` php]
   
   Checks if the interface with the given name has already been defined.
 
   This function will return true if a interface exists, but has not been loaded yet.
+
+  * [`$interface_name` php]: The name of the interface to check.
 
   ```php
   use Psl\Interface;
@@ -43,13 +45,15 @@ Psl\invariant(false === Interface\defined(BazInterface::class), '"BazInterface" 
   Interface\defined(IO\ReadHandleInterface::class); // false
   ```
 
-* `Interface\exists(string $interface_name): bool`
+* [`Interface\exists(string $interface_name): bool` php]
 
   Checks if the interface with the given name exists.
 
   If the given interface is not defined, this function will attempt to load it.
 
   If the given interface is not defined and cannot be loaded, this function will return false.
+
+  * [`$interface_name` php]: The name of the interface to check.
 
   ```php
     use Psl\Interface;

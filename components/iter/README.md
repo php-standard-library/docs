@@ -20,14 +20,14 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 
 ### Functions
 
-* `Iter\all<T>(iterable<T> $iterable, (callable(T): bool) $predicate): bool`
+* [`<T> Iter\all(iterable<T> $iterable, (callable(T): bool) $predicate): bool` php]
 
   Returns true if all values in the iterable satisfy the predicate.
 
   This function is short-circuiting, i.e. if the predicate fails for one element the remaining elements will not be considered anymore.
 
-  * `$iterable`: The iterable to test.
-  * `$predicate`: The predicate to test each item against.
+  * [`$iterable` php]: The iterable to test.
+  * [`$predicate` php]: The predicate to test each item against.
 
   ```php
   use Psl\Iter;
@@ -42,14 +42,14 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === false
   ```
 
-* `Iter\any<T>(iterable<T> $iterable, (callable(T): bool) $predicate): bool`
+* [`<T> Iter\any(iterable<T> $iterable, (callable(T): bool) $predicate): bool` php]
 
   Returns true if any value in the iterable satisfies the predicate.
 
   This function is short-circuiting, i.e. if the predicate matches for one element the remaining elements will not be considered anymore.
 
-  * `$iterable`: The iterable to test.
-  * `$predicate`: The predicate to test each item against.
+  * [`$iterable` php]: The iterable to test.
+  * [`$predicate` php]: The predicate to test each item against.
 
   ```php
   use Psl\Iter;
@@ -64,12 +64,12 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === false
   ```
 
-* `Iter\apply<T>(iterable<T> $iterable, (callable(T): void) $function): void`
+* [`<T> Iter\apply(iterable<T> $iterable, (callable(T): void) $function): void` php]
 
   Applies a function to all values of an iterable.
 
-  * `$iterable`: The iterable to apply the function to.
-  * `$function`: The function to apply to each element.
+  * [`$iterable` php]: The iterable to apply the function to.
+  * [`$function` php]: The function to apply to each element.
 
   ```php
   use Psl\Iter;
@@ -80,12 +80,12 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   );
   ```
 
-* `Iter\contains<T>(iterable<T> $iterable, T $value): bool`
+* [`<T> Iter\contains(iterable<T> $iterable, T $value): bool` php]
 
   Returns true if the given iterable contains the value. Strict equality is used.
 
-  * `$iterable`: The iterable to test.
-  * `$value`: The value to test.
+  * [`$iterable` php]: The iterable to test.
+  * [`$value` php]: The value to test.
 
   ```php
   use Psl\Iter;
@@ -100,12 +100,12 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === false
   ```
 
-* `Iter\contains_key<Tk, Tv>(iterable<Tk, Tv> $iterable, Tk $key): bool`
+* [`<Tk, Tv> Iter\contains_key(iterable<Tk, Tv> $iterable, Tk $key): bool` php]
 
   Returns true if the given iterable contains the key. Strict equality is used.
 
-  * `$iterable`: The iterable to test.
-  * `$key`: The key to test.
+  * [`$iterable` php]: The iterable to test.
+  * [`$key` php]: The key to test.
 
   ```php
   use Psl\Iter;
@@ -120,15 +120,15 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === false
   ```
 
-* `Iter\count<T>(iterable<T> $iterable): int`
+* [`<T> Iter\count(iterable<T> $iterable): int` php]
 
   Returns the number of elements an iterable contains.
 
   This function is not recursive, it counts only the number of elements in the iterable itself, not its children.
 
-  If the iterable implements `Countable` its `Countable::count()` method will be used.
+  If the iterable implements [`Countable` php] its [`Countable::count()` php] method will be used.
 
-  * `$iterable`: The iterable to count.
+  * [`$iterable` php]: The iterable to count.
 
   ```php
   use Psl\Iter;
@@ -147,11 +147,11 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === 2
   ```
 
-* `Iter\first<T>(iterable<T> $iterable): ?T`
+* [`<T> Iter\first(iterable<T> $iterable): ?T` php]
 
   Returns the first element of an iterable, if the iterable is empty, null will be returned.
 
-  * `$iterable`: The iterable to get the first element from.
+  * [`$iterable` php]: The iterable to get the first element from.
 
   ```php
   use Psl\Iter;
@@ -163,11 +163,11 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === null
   ```
 
-* `Iter\first_key<Tk, Tv>(iterable<Tk, Tv> $iterable): ?Tk`
+* [`<Tk, Tv> Iter\first_key(iterable<Tk, Tv> $iterable): ?Tk` php]
 
   Returns the first key of an iterable, if the iterable is empty, null will be returned.
 
-  * `$iterable`: The iterable to get the first key from.
+  * [`$iterable` php]: The iterable to get the first key from.
 
   ```php
   use Psl\Iter;
@@ -179,11 +179,11 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === null
   ```
 
-* `Iter\last<T>(iterable<T> $iterable): ?T`
+* [`<T> Iter\last(iterable<T> $iterable): ?T` php]
 
   Returns the last element of an iterable, if the iterable is empty, null will be returned.
 
-  * `$iterable`: The iterable to get the last element from.
+  * [`$iterable` php]: The iterable to get the last element from.
 
   ```php
   use Psl\Iter;
@@ -195,11 +195,11 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === null
   ```
 
-* `Iter\last_key<Tk, Tv>(iterable<Tk, Tv> $iterable): ?Tk`
+* [`<Tk, Tv> Iter\last_key(iterable<Tk, Tv> $iterable): ?Tk` php]
 
   Returns the last key of an iterable, if the iterable is empty, null will be returned.
 
-  * `$iterable`: The iterable to get the last key from.
+  * [`$iterable` php]: The iterable to get the last key from.
 
   ```php
   use Psl\Iter;
@@ -211,11 +211,11 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === null
   ```
 
-* `Iter\is_empty<T>(iterable<T> $iterable): bool`
+* [`<T> Iter\is_empty(iterable<T> $iterable): bool` php]
 
   Returns true if the given iterable is empty.
 
-  * `$iterable`: The iterable to test.
+  * [`$iterable` php]: The iterable to test.
 
   > This function asserts that $iterable is empty if true is returned.
 
@@ -229,11 +229,11 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === true
   ```
 
-* `Iter\random<T>(iterable<T> $iterable): T`
+* [`<T> Iter\random(iterable<T> $iterable): T` php]
 
   Retrieve a random value from a non-empty iterable.
 
-  * `$iterable`: The iterable to get the random element from.
+  * [`$iterable` php]: The iterable to get the random element from.
 
   If the iterable is empty, `Psl\Exception\InvarViolationException` will be thrown.
 
@@ -247,16 +247,16 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === null
   ```
 
-* `Iter\reduce<T, Ts>(iterable<T> $iterable, (callable(Ts, T): Ts) $function, Ts $initial): Ts`
+* [`<T, Ts> Iter\reduce(iterable<T> $iterable, (callable(Ts, T): Ts) $function, Ts $initial): Ts` php]
 
   Reduces an iterable to a single value.
 
   The reduction function is passed an accumulator value and the current iterator value and returns a new accumulator. <br />
   The accumulator is initialized to $initial.
 
-  * `$iterable`: The iterable to reduce.
-  * `$function`: The function to apply to each element.
-  * `$initial`: The initial value.
+  * [`$iterable` php]: The iterable to reduce.
+  * [`$function` php]: The function to apply to each element.
+  * [`$initial` php]: The initial value.
 
   ```php
   use Psl\Iter;
@@ -270,16 +270,16 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === 10
   ```
 
-* `Iter\reduce_keys<Tk, Tv, Ts>(iterable<Tk, Tv> $iterable, (callable(Ts, Tk): Ts) $function, Ts $initial): Ts`
+* [`<Tk, Tv, Ts> Iter\reduce_keys(iterable<Tk, Tv> $iterable, (callable(Ts, Tk): Ts) $function, Ts $initial): Ts` php]
 
   Reduces an iterable to a single value.
 
   The reduction function is passed an accumulator value and the current iterator key and returns a new accumulator. <br />
   The accumulator is initialized to $initial.
 
-  * `$iterable`: The iterable to reduce.
-  * `$function`: The function to apply to each key.
-  * `$initial`: The initial value.
+  * [`$iterable` php]: The iterable to reduce.
+  * [`$function` php]: The function to apply to each key.
+  * [`$initial` php]: The initial value.
 
   ```php
   use Psl\Iter;
@@ -293,16 +293,16 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === 6
   ```
 
-* `Iter\reduce_with_keys<Tk, Tv, Ts>(iterable<Tk, Tv> $iterable, (callable(Ts, Tk, Tv): Ts) $function, Ts $initial): Ts`
+* [`<Tk, Tv, Ts> Iter\reduce_with_keys(iterable<Tk, Tv> $iterable, (callable(Ts, Tk, Tv): Ts) $function, Ts $initial): Ts` php]
 
   Reduces an iterable to a single value.
 
   The reduction function is passed an accumulator value and the current iterator key and value and returns a new accumulator. <br />
   The accumulator is initialized to $initial.
 
-  * `$iterable`: The iterable to reduce.
-  * `$function`: The function to apply to each key.
-  * `$initial`: The initial value.
+  * [`$iterable` php]: The iterable to reduce.
+  * [`$function` php]: The function to apply to each key.
+  * [`$initial` php]: The initial value.
 
   ```php
   use Psl\Iter;
@@ -317,12 +317,12 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === 13
   ```
 
-* `Iter\search<T>(iterable<T> $iterable, (callable(T): bool) $predicate): ?int`
+* [`<T> Iter\search(iterable<T> $iterable, (callable(T): bool) $predicate): ?int` php]
 
   Searches an iterable until a predicate returns true, then returns the value of the matching element.
 
-  * `$iterable`: The iterable to search.
-  * `$predicate`: The predicate to apply to each element.
+  * [`$iterable` php]: The iterable to search.
+  * [`$predicate` php]: The predicate to apply to each element.
 
   ```php
   use Psl\Iter;
@@ -333,11 +333,11 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   }
   ```
 
-* `Iter\rewindable<Tk, Tv>(Generator<Tk, Tv> $generator): Iter\Iterator<Tk, Tv>`
+* [`<Tk, Tv> Iter\rewindable(Generator<Tk, Tv> $generator): Iter\Iterator<Tk, Tv>` php]
 
   Create a rewindable iterator from the given generator without exhausting the generator immediately.
 
-  * `$generator`: The generator to create a rewindable iterator from.
+  * [`$generator` php]: The generator to create a rewindable iterator from.
 
   ```php
   use Psl\Iter;
@@ -384,11 +384,11 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // iterator: end
   ```
 
-* `Iter\to_iterator<Tk, Tv>(iterable<Tk, Tv> $iterable): Iter\Iterator<Tk, Tv>`
+* [`<Tk, Tv> Iter\to_iterator(iterable<Tk, Tv> $iterable): Iter\Iterator<Tk, Tv>` php]
 
-  Copy the iterable into an Iterator.
+  Copy the iterable into an [`Iter\Iterator` php].
 
-  * `$iterable`: The iterable to create an iterator from.
+  * [`$iterable` php]: The iterable to create an iterator from.
 
   ```php
   use Psl\Iter;
@@ -404,15 +404,15 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 
 ### Classes
 
-* `Iter\Iterator<Tk, Tv> extends Countable, SeekableIterator<Tk, Tv>`
+* [`class Iter\Iterator<Tk, Tv> extends Countable, SeekableIterator<Tk, Tv>` php]
 
-  The `Iter\Iterator` class is a lazy, seekable, rewindable iterator.
+  The [`Iter\Iterator` php] class is a lazy, seekable, rewindable iterator.
 
-  * `static Iter\Iterator::from<Tsk, Tsv>((callable(): iterable<Tsk, Tsv>) $factory): Iter\Iterator<Tsk, Tsv>`
+  * [`<Tsk, Tsv> static Iter\Iterator::from((callable(): iterable<Tsk, Tsv>) $factory): Iter\Iterator<Tsk, Tsv>` php]
 
     Create an iterator from a factory.
 
-    * `$factory`: The factory to create the iterator from.
+    * [`$factory` php]: The factory to create the iterator from.
 
     ```php
     use Psl\Iter;
@@ -426,11 +426,11 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
     // $iterator is Iter\Iterator<int, int>
     ```
 
-  * `static Iter\Iterator::create<Tsk, Tsv>(iterable $iterable): Iter\Iterator<Tsk, Tsv>`
+  * [`<Tsk, Tsv> static Iter\Iterator::create(iterable $iterable): Iter\Iterator<Tsk, Tsv>` php]
 
     Create an iterator from an iterable.
 
-    * `$iterable`: The iterable to create the iterator from.
+    * [`$iterable` php]: The iterable to create the iterator from.
 
     ```php
     use Psl\Iter;
@@ -440,11 +440,11 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
     // $iterator is Iter\Iterator<int, int>
     ```
 
-  * `Iter\Iterator::__construct(Generator<Tk, Tv, _, _> $generator)`
+  * [`Iter\Iterator::__construct(Generator<Tk, Tv, _, _> $generator)` php]
 
     Instantiate an iterator from a generator.
 
-    * `$generator`: The generator to create the iterator from.
+    * [`$generator` php]: The generator to create the iterator from.
 
     ```php
     use Psl\Iter;
@@ -462,7 +462,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
     // $iterator is Iter\Iterator<int, int>
     ```
 
-  * `Iter\Iterator::current(): Tv`
+  * [`Iter\Iterator::current(): Tv` php]
 
     Return the current element.
 
@@ -480,7 +480,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
     // $value === 10
     ```
 
-  * `Iter\Iterator::key(): Tk`
+  * [`Iter\Iterator::key(): Tk` php]
 
     Return the key of the current element.
 
@@ -498,7 +498,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
     // $key === 1
     ```
 
-  * `Iter\Iterator::next(): void`
+  * [`Iter\Iterator::next(): void` php]
 
     Move forward to the next element.
 
@@ -518,7 +518,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
     // $value === 20
     ```
 
-  * `Iter\Iterator::valid(): bool`
+  * [`Iter\Iterator::valid(): bool` php]
 
     Checks if current position is valid.
 
@@ -542,7 +542,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 
     ```
 
-  * `Iter\Iterator::seek(0|positive-int $position): void`
+  * [`Iter\Iterator::seek(0|positive-int $position): void` php]
 
     Seek to the given position.
 
@@ -566,7 +566,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
     // $value === 20
     ```
 
-  * `Iter\Iterator::rewind(): void`
+  * [`Iter\Iterator::rewind(): void` php]
 
     Rewind the iterator to the first element.
 
@@ -589,7 +589,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
     // $value === 10
     ```
 
-  * `Iter\Iterator::count(): int`
+  * [`Iter\Iterator::count(): int` php]
 
     Return the number of elements.
 

@@ -18,7 +18,7 @@ if (Runtime\has_extension('parallel')) {
 
 ### Functions
 
-* `Runtime\get_version(): non-empty-string`
+* [`Runtime\get_version(): non-empty-string` php]
 
   Return the current PHP version as a string in "major.minor.release[extra]" notation.
 
@@ -30,7 +30,7 @@ if (Runtime\has_extension('parallel')) {
   $version = Runtime\get_version();
   ```
 
-* `Runtime\get_version_id(): positive-int`
+* [`Runtime\get_version_id(): positive-int` php]
 
   Return the current PHP version as an integer, useful for version comparisons (e.g., int(80100) from version "8.1.0-RC5").
 
@@ -49,7 +49,7 @@ if (Runtime\has_extension('parallel')) {
   }
   ```
 
-* `Runtime\get_version_details(): array{major: non-empty-string, minor: non-empty-string, release: non-empty-string, extra: non-empty-string|null}`
+* [`Runtime\get_version_details(): array{major: non-empty-string, minor: non-empty-string, release: non-empty-string, extra: non-empty-string|null}` php]
 
   Returns an array with the version details of the PHP runtime.
 
@@ -66,7 +66,7 @@ if (Runtime\has_extension('parallel')) {
   $extra = $version_details['extra'];
   ```
 
-* `Runtime\get_zend_version(): non-empty-string`
+* [`Runtime\get_zend_version(): non-empty-string` php]
 
   Return the version of the current Zend engine.
 
@@ -78,7 +78,7 @@ if (Runtime\has_extension('parallel')) {
   $zend_version = Runtime\get_zend_version();
   ```
 
-* `Runtime\has_extension(string $extension): bool`
+* [`Runtime\has_extension(string $extension): bool` php]
 
   Find out whether an $extension is loaded.
 
@@ -96,7 +96,7 @@ if (Runtime\has_extension('parallel')) {
   }
   ```
 
-* `Runtime\get_extensions(): non-empty-list<non-empty-string>`
+* [`Runtime\get_extensions(): non-empty-list<non-empty-string>` php]
 
   Returns an list with the names of all extensions compiled and loaded.
 
@@ -108,7 +108,7 @@ if (Runtime\has_extension('parallel')) {
   $extensions = Runtime\get_extensions();
   ```
 
-* `Runtime\get_zend_extensions(): list<non-empty-string>`
+* [`Runtime\get_zend_extensions(): list<non-empty-string>` php]
 
   Returns an list with the names of all Zend extensions compiled and loaded.
 
@@ -120,7 +120,7 @@ if (Runtime\has_extension('parallel')) {
   $zend_extensions = Runtime\get_zend_extensions();
   ```
 
-* `Runtime\get_sapi(): non-empty-string`
+* [`Runtime\get_sapi(): non-empty-string` php]
 
   Returns the name of the SAPI that PHP is running under.
 
@@ -132,7 +132,7 @@ if (Runtime\has_extension('parallel')) {
   $sapi = Runtime\get_sapi();
   ```
 
-* `Runtime\is_debug(): bool`
+* [`Runtime\is_debug(): bool` php]
 
   Return true if PHP was built with debugging enabled.
 
@@ -146,7 +146,7 @@ if (Runtime\has_extension('parallel')) {
   }
   ```
 
-* `Runtime\is_thread_safe(): bool`
+* [`Runtime\is_thread_safe(): bool` php]
 
   Return true if PHP was built with ZTS enabled.
 

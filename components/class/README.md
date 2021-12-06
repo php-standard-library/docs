@@ -25,11 +25,13 @@ Psl\invariant(false === Class\has_constant(Foo::class, 'QUX'), '"Foo" should not
 
 ### Functions
 
-* `Class\defined(class-string $class_name): bool`
+* [`Class\defined(class-string $class_name): bool` php]
   
   Checks if the class with the given name has already been defined.
 
   This function will return true if a class exists, but has not been loaded yet.
+
+  * [`$class_name` php]: The name of the class to check.
 
   ```php
   use Psl\Class;
@@ -44,13 +46,15 @@ Psl\invariant(false === Class\has_constant(Foo::class, 'QUX'), '"Foo" should not
   Class\defined(Collection\Map::class); // false
   ```
 
-* `Class\exists(class-string $class_name): bool`
+* [`Class\exists(class-string $class_name): bool` php]
 
   Checks if the class with the given name exists.
 
   If the given class is not defined, this function will attempt to load it.
 
   If the given class is not defined and cannot be loaded, this function will return false.
+
+  * [`$class_name` php]: The name of the class to check.
 
   ```php
     use Psl\Class;
@@ -65,11 +69,14 @@ Psl\invariant(false === Class\has_constant(Foo::class, 'QUX'), '"Foo" should not
     Class\exists(Collection\Map::class); // true
     ```
 
-* `Class\has_constant(class-string $class_name, string $constant_name): bool`
+* [`Class\has_constant(class-string $class_name, string $constant_name): bool` php]
 
   Checks if the class with the given name has a constant with the given name.
 
-  If `$class_name` does not exists, this function will throw `Psl\Exception\InvarientViolationException`.
+  * [`$class_name` php]: The name of the class to check.
+  * [`$constant_name` php]: The name of the constant to check.
+
+  If [`$class_name` php] does not exists, this function will throw [`Psl\Exception\InvarientViolationException` php].
 
   ```php
   use Psl\Class;
@@ -82,11 +89,14 @@ Psl\invariant(false === Class\has_constant(Foo::class, 'QUX'), '"Foo" should not
   Class\has_constant(Foo::class, 'BAZ'); // false
   ```
 
-* `Class\has_method(class-string $class_name, string $method_name): bool`
+* [`Class\has_method(class-string $class_name, string $method_name): bool` php]
 
   Checks if the class with the given name has a method with the given name.
 
-  If `$class_name` does not exists, this function will throw `Psl\Exception\InvarientViolationException`.
+  * [`$class_name` php]: The name of the class to check.
+  * [`$method_name` php]: The name of the method to check.
+
+  If [`$class_name` php] does not exists, this function will throw [`Psl\Exception\InvarientViolationException` php].
 
   ```php
   use Psl\Class;
@@ -99,11 +109,13 @@ Psl\invariant(false === Class\has_constant(Foo::class, 'QUX'), '"Foo" should not
   Class\has_method(Foo::class, 'baz'); // false
   ```
 
-* `Class\is_abstract(class-string $class_name): bool`
+* [`Class\is_abstract(class-string $class_name): bool` php]
 
   Checks if the class with the given name is abstract.
 
-  If `$class_name` does not exists, this function will throw `Psl\Exception\InvarientViolationException`.
+  * [`$class_name` php]: The name of the class to check.
+
+  If [`$class_name` php] does not exists, this function will throw [`Psl\Exception\InvarientViolationException` php].
 
   ```php
   use Psl\Class;
@@ -117,11 +129,13 @@ Psl\invariant(false === Class\has_constant(Foo::class, 'QUX'), '"Foo" should not
   Class\is_abstract(Baz::class); // true
   ```
 
-* `Class\is_final(class-string $class_name): bool`
+* [`Class\is_final(class-string $class_name): bool` php]
 
   Checks if the class with the given name is final.
 
-  If `$class_name` does not exists, this function will throw `Psl\Exception\InvarientViolationException`.
+  * [`$class_name` php]: The name of the class to check.
+
+  If [`$class_name` php] does not exists, this function will throw [`Psl\Exception\InvarientViolationException` php].
 
   ```php
   use Psl\Class;

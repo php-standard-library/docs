@@ -26,19 +26,19 @@ $password = $user['password'];
 
 ### Functions
 
-* `Json\encode(mixed $value, bool $pretty = false, int $flags = 0): string`
+* [`Json\encode(mixed $value, bool $pretty = false, int $flags = 0): string` php]
 
   Returns a string containing the JSON representation of the supplied value.
 
-  * `$value`: The value to be encoded.
-  * `$pretty`: If true, the result will be formatted with whitespace.
-  * `$flags`: Bitmask of `JSON_*` constants.
+  * [`$value` php]: The value to be encoded.
+  * [`$pretty` php]: If true, the result will be formatted with whitespace.
+  * [`$flags` php]: Bitmask of [`JSON_*` php] constants.
 
-  If the value cannot be encoded, `Json\Exception\EncodeException` is thrown.
+  If the value cannot be encoded, [`Json\Exception\EncodeException` php] is thrown.
 
   > This function is pure.
 
-  !> `JSON_UNESCAPED_UNICODE`, `JSON_UNESCAPED_SLASHES`, `JSON_PRESERVE_ZERO_FRACTION` flags are always set.
+  !> [`JSON_UNESCAPED_UNICODE` php], [`JSON_UNESCAPED_SLASHES` php], [`JSON_PRESERVE_ZERO_FRACTION` php] flags are always set.
 
   ```php
   use Psl\Json;
@@ -54,18 +54,18 @@ $password = $user['password'];
   // }
   ```
 
-* `Json\decode(string $json, bool $assoc = true): mixed`
+* [`Json\decode(string $json, bool $assoc = true): mixed` php]
 
   Decode a json encoded string into a dynamic variable.
 
-  * `$json`: The json encoded string.
-  * `$assoc`: If true ( default ), the result will be an associative array.
+  * [`$json` php]: The json encoded string.
+  * [`$assoc` php]: If true ( default ), the result will be an associative array.
 
-  If the json string cannot be decoded, `Json\Exception\DecodeException` is thrown.
+  If the json string cannot be decoded, [`Json\Exception\DecodeException` php] is thrown.
 
   > This function is pure.
 
-  !> The maximum nesting depth of the structure being decoded is `512`. <br />
+  !> The maximum nesting depth of the structure being decoded is [`512` php]. <br />
   This function always decodes large integers as their original string value.
 
   ```php
@@ -80,18 +80,18 @@ $password = $user['password'];
   // stdClass { foo: 'bar' }
   ```
 
-* `Json\typed<T>(string $json, Type\TypeInterface<T> $type): T`
+* [`<T> Json\typed(string $json, Type\TypeInterface<T> $type): T` php]
 
   Decode a json encoded string into a typed variable.
 
-  * `$json`: The json encoded string.
-  * `$type`: The type to decode the json into.
+  * [`$json` php]: The json encoded string.
+  * [`$type` php]: The type to decode the json into.
 
-  If the json string cannot be decoded, `Json\Exception\DecodeException` is thrown.
+  If the json string cannot be decoded, [`Json\Exception\DecodeException` php] is thrown.
 
   > This function is pure.
 
-  !> The maximum nesting depth of the structure being decoded is `512`. <br />
+  !> The maximum nesting depth of the structure being decoded is [`512` php]. <br />
   This function always decodes large integers as their original string value.
 
   ```php
@@ -109,7 +109,7 @@ $password = $user['password'];
 
 ### Exception
 
-* `Json\Exception\EncodeException`
+* [`final class Json\Exception\EncodeException implements Json\Exception\ExceptionInterface extends Exception` php]
 
   Thrown when the value cannot be encoded.
 
@@ -126,7 +126,7 @@ $password = $user['password'];
   }
   ```
 
-* `Json\Exception\DecodeException`
+* [`Json\Exception\DecodeException implements Json\Exception\ExceptionInterface extends Exception` php]
 
   Thrown when the json string cannot be decoded.
 

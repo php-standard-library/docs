@@ -21,17 +21,17 @@ $random_string = SecureRandom\string(256);
 
 ### Functions
 
-* `SecureRandom\int(int $min = Math\INT64_MIN, int $max = Math\INT64_MAX): int`
+* [`SecureRandom\int(int $min = Math\INT64_MIN, int $max = Math\INT64_MAX): int` php]
 
   Returns a cryptographically secure random integer in the given range.
 
-  * `$min`: The minimum value of the random number.
-  * `$max`: The maximum value of the random number.
+  * [`$min` php]: The minimum value of the random number.
+  * [`$max` php]: The maximum value of the random number.
 
-  If `$min` is greater than `$max`, `Psl\Exception\InvarViolationException` is thrown. <br />
-  If it is not possible to gather sufficient entropy, `Exception\InsufficientEntropyException` is thrown.  <br />
+  If [`$min` php] is greater than [`$max` php], [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
+  If it is not possible to gather sufficient entropy, [`SecureRandom\Exception\InsufficientEntropyException` php] is thrown.  <br />
 
-  The returned value is always greater than or equal to `$min` and less than or equal to `$max`.
+  The returned value is always greater than or equal to [`$min` php] and less than or equal to [`$max` php].
 
   > This function does not cause any external mutations.
 
@@ -43,7 +43,7 @@ $random_string = SecureRandom\string(256);
   // 0 <= $random_number <= 4
   ```
 
-* `SecureRandom\string(0|positive-int $length, ?string $alphabet = null): string`
+* [`SecureRandom\string(0|positive-int $length, ?string $alphabet = null): string` php]
 
   Returns a securely generated random string of the given length. <br />
   The string is composed of characters from the given alphabet string. <br />
@@ -52,12 +52,11 @@ $random_string = SecureRandom\string(256);
 
   If the alphabet argument is specified, its length must be within the [2^1, 2^56] range. <br />
 
-  * `$length`: The length of the string to generate.
-  * `$alphabet`: The alphabet to use.
+  * [`$length` php]: The length of the string to generate.
+  * [`$alphabet` php]: The alphabet to use.
 
-  If `$length` is 0, an empty string is returned. <br />
-  If `$length` is negative, `Psl\Exception\InvalidArgumentException` is thrown. <br />
-  If it is not possible to gather sufficient entropy, `Exception\InsufficientEntropyException` is thrown.  <br />
+  If [`$length` php] is negative, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
+  If it is not possible to gather sufficient entropy, [`SecureRandom\Exception\InsufficientEntropyException` php] is thrown.  <br />
 
   > This function does not cause any external mutations.
 
@@ -69,13 +68,14 @@ $random_string = SecureRandom\string(256);
   // $random_string is a 32-character string composed of alphanumeric characters
   ```
 
-* `SecureRandom\bytes(0|positive-int $length): string`
+* [`SecureRandom\bytes(0|positive-int $length): string` php]
 
   Returns a securely generated random string of the given length. <br />
 
-  If `$length` is 0, an empty string is returned. <br />
-  If `$length` is negative, `Psl\Exception\InvalidArgumentException` is thrown. <br />
-  If it is not possible to gather sufficient entropy, `Exception\InsufficientEntropyException` is thrown.  <br />
+  * [`$length` php]: The length of the string to generate.
+
+  If [`$length` php] is negative, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
+  If it is not possible to gather sufficient entropy, [`SecureRandom\Exception\InsufficientEntropyException` php] is thrown.  <br />
 
   > This function does not cause any external mutations.
 
@@ -87,11 +87,11 @@ $random_string = SecureRandom\string(256);
   // $random_bytes is a 32-byte string
   ```
 
-* `SecureRandom\float(): float`
+* [`SecureRandom\float(): float` php]
 
   Returns a cryptographically secure random float. <br />
 
-  If it is not possible to gather sufficient entropy, `Exception\InsufficientEntropyException` is thrown.  <br />
+  If it is not possible to gather sufficient entropy, [`SecureRandom\Exception\InsufficientEntropyException` php] is thrown.  <br />
 
   > This function does not cause any external mutations.
 
@@ -105,6 +105,6 @@ $random_string = SecureRandom\string(256);
 
 ### Exceptions
 
-* `Exception\InsufficientEntropyException`
+* [`final class SecureRandom\Exception\InsufficientEntropyException implements SecureRandom\Exception\ExceptionInterface extends Exception` php]
 
   Thrown when it is not possible to gather sufficient entropy.

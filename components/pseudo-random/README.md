@@ -19,14 +19,14 @@ $random_float = PseudoRandom\float();
 
 ### Functions
 
-* `PseudoRandom\int(int $min = Math\INT64_MIN, int $max = Math\INT64_MAX): int`
+* [`PseudoRandom\int(int $min = Math\INT64_MIN, int $max = Math\INT64_MAX): int` php]
 
   Returns a pseudo-random integer in the given range.
 
-  * `$min`: The minimum value.
-  * `$max`: The maximum value.
+  * [`$min` php]: The minimum value.
+  * [`$max` php]: The maximum value.
 
-  If `$min` is greater than `$max`, `Psl\Exception\InvarViolationException` is thrown.
+  If [`$min` php] is greater than [`$max` php], [`Psl\Exception\InvariantViolationException` php] is thrown.
 
   > This function does not cause any external mutations.
 
@@ -38,7 +38,7 @@ $random_float = PseudoRandom\float();
   // 0 <= $random_number <= 10
   ```
 
-* `PseudoRandom\float(): float`
+* [`PseudoRandom\float(): float` php]
 
   Returns a pseudo-random float in the range of [0.0, 1.0].
 

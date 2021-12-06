@@ -24,11 +24,13 @@ Psl\invariant(false === Trait\defined(BazTrait::class), '"BazTrait" should not b
 
 ### Functions
 
-* `Trait\defined(string $trait_name): bool`
-  
+* [`Trait\defined(string $trait_name): bool` php]
+
   Checks if the trait with the given name has already been defined.
 
   This function will return true if a trait exists, but has not been loaded yet.
+
+  * [`$trait_name` php]: The name of the trait to check.
 
   ```php
   use Psl\Trait;
@@ -43,13 +45,15 @@ Psl\invariant(false === Trait\defined(BazTrait::class), '"BazTrait" should not b
   Trait\defined(IO\ReadHandleConvenienceMethodsTrait::class); // false
   ```
 
-* `Trait\exists(string $trait_name): bool`
+* [`Trait\exists(string $trait_name): bool` php]
 
   Checks if the trait with the given name exists.
 
   If the given trait is not defined, this function will attempt to load it.
 
   If the given trait is not defined and cannot be loaded, this function will return false.
+
+  * [`$trait_name` php]: The name of the trait to check.
 
   ```php
     use Psl\Trait;

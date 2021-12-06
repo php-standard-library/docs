@@ -20,21 +20,21 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
 
 ### Functions
 
-* `Shell\execute(string $command, list<string> $arguments = [], ?string $working_directory = null, array<string, string> $environment = [], bool $escape_arguments = true, ?float $timeout = null): string`
+* [`Shell\execute(string $command, list<string> $arguments = [], ?string $working_directory = null, array<string, string> $environment = [], bool $escape_arguments = true, ?float $timeout = null): string` php]
 
   Execute an external program.
 
-  * `$command`: The command to execute.
-  * `$arguments`: The command arguments listed as separate entries.
-  * `$working_directory`: The initial working directory for the command.
-  * `$environment`: A dict with the environment variables for the command that will be run.
-  * `$escape_arguments`: If set to true ( default ), all $arguments will be escaped using `Shell\escape_argument`.
-  * `$timeout`: The timeout in seconds. If set to null, the timeout will be disabled.
+  * [`$command` php]: The command to execute.
+  * [`$arguments` php]: The command arguments listed as separate entries.
+  * [`$working_directory` php]: The initial working directory for the command.
+  * [`$environment` php]: A dict with the environment variables for the command that will be run.
+  * [`$escape_arguments` php]: If set to true ( default ), all [`$arguments` php] will be escaped using [`Shell\escape_argument(...)` php].
+  * [`$timeout` php]: The timeout in seconds. If set to null, the timeout will be disabled.
 
-  If the command returns a non-zero exit code, `Shell\Exception\FailedExecutionException` will be thrown. <br />
-  If the command being run is suspicious ( e.g: contains NULL byte ), `Shell\Exception\PossibleAttackException` will be thrown.  <br />
-  If the `$working_directory` doesn't exist, or unable to create a new process, `Shell\Exception\RuntimeException` will be thrown.  <br />
-  If the `$timeout` is reached before being able to read the process stream, `Shell\Exception\TimeoutException` will be thrown. <br />
+  If the command returns a non-zero exit code, [`Shell\Exception\FailedExecutionException` php] will be thrown. <br />
+  If the command being run is suspicious ( e.g: contains NULL byte ), [`Shell\Exception\PossibleAttackException` php] will be thrown.  <br />
+  If the [`$working_directory` php] doesn't exist, or unable to create a new process, [`Shell\Exception\RuntimeException` php] will be thrown.  <br />
+  If the [`$timeout` php] is reached before being able to read the process stream, [`Shell\Exception\TimeoutException` php] will be thrown. <br />
 
   ```php
   use Psl\Shell;
@@ -43,7 +43,7 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
   $result = Shell\execute('echo', arguments: ['Hello, World!'], timeout: 1.0); // Hello, World!
   ```
 
-  `Shell\execute()` waits for the underlying process output in a non-blocking manner, this means that while a process is running, the script will not block, and allows other I/O operations to be performed.
+  [`Shell\execute(...)` php] waits for the underlying process output in a non-blocking manner, this means that while a process is running, the script will not block, and allows other I/O operations to be performed.
 
   This non-blocking nature is useful when you want to execute a lot of commands in parallel, and you don't want to block the script.
 
@@ -59,7 +59,7 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
 
   All commands in the example above will be executed in parallel, and the script will finish in ~1 second.
 
-  We can also set a timeout for the read operation, and if the process is still running after the timeout, `Shell\Exception\TimeoutException` will be thrown.
+  We can also set a timeout for the read operation, and if the process is still running after the timeout, [`Shell\Exception\TimeoutException` php] will be thrown.
 
   ```php
   try {
@@ -69,13 +69,13 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
   }
   ```
 
-* `Shell\escape_argument(string $argument): string`
+* [`Shell\escape_argument(string $argument): string` php]
 
   Escape a command argument.
 
-  This function should only be used in combination with `Shell\execute()`, as the escape format is specific to the `Shell\execute()` function.
+  This function should only be used in combination with [`Shell\execute(...)` php], as the escape format is specific to the [`Shell\execute(...)` php] function.
 
-  * `$argument`: The command argument to escape.
+  * [`$argument` php]: The command argument to escape.
 
   ```php
   use Psl\Shell;
@@ -91,7 +91,7 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
 
 ### Exceptions
 
-* `Shell\Exception\FailedExecutionException`
+* [`final class Shell\Exception\FailedExecutionException implements Shell\Exception\ExceptionInterface extends Execption` php]
 
   Thrown when the command returns a non-zero exit code.
 
@@ -110,7 +110,7 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
 
   ```
 
-* `Shell\Exception\PossibleAttackException`
+* [`final class Shell\Exception\PossibleAttackException implements Shell\Exception\ExceptionInterface extends Execption` php]
 
   Thrown when the command being run is suspicious ( e.g: contains NULL byte ).
 
@@ -124,9 +124,9 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
   }
   ```
 
-* `Shell\Exception\RuntimeException`
+* [`final class Shell\Exception\RuntimeException implements Shell\Exception\ExceptionInterface extends Execption` php]
 
-  Thrown when the `$working_directory` doesn't exist, or unable to create a new process.
+  Thrown when the [`$working_directory` php] doesn't exist, or unable to create a new process.
 
   ```php
   use Psl\Shell;
@@ -138,9 +138,9 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
   }
   ```
 
-* `Shell\Exception\TimeoutException`
+* [`final class Shell\Exception\TimeoutException` implements Shell\Exception\ExceptionInterface extends Execption` php]
 
-  Thrown when the `$timeout` is reached before being able to read the process stream.
+  Thrown when the [`$timeout` php] is reached before being able to read the process stream.
 
   ```php
   use Psl\Shell;
