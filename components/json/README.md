@@ -28,7 +28,8 @@ $password = $user['password'];
 
 <div class="api-functions">
 
-* [`Json\encode(mixed $value, bool $pretty = false, int $flags = 0): string` php]
+* [`@pure` php] <br />
+  [`Json\encode(mixed $value, bool $pretty = false, int $flags = 0): string` php]
 
   Returns a string containing the JSON representation of the supplied value.
 
@@ -37,8 +38,6 @@ $password = $user['password'];
   * [`$flags` php]: Bitmask of [`JSON_*` php] constants.
 
   If the value cannot be encoded, [`Json\Exception\EncodeException` php] is thrown.
-
-  > This function is pure.
 
   !> [`JSON_UNESCAPED_UNICODE` php], [`JSON_UNESCAPED_SLASHES` php], [`JSON_PRESERVE_ZERO_FRACTION` php] flags are always set.
 
@@ -56,7 +55,8 @@ $password = $user['password'];
   // }
   ```
 
-* [`Json\decode(string $json, bool $assoc = true): mixed` php]
+* [`@pure` php] <br />
+  [`Json\decode(string $json, bool $assoc = true): mixed` php]
 
   Decode a json encoded string into a dynamic variable.
 
@@ -64,8 +64,6 @@ $password = $user['password'];
   * [`$assoc` php]: If true ( default ), the result will be an associative array.
 
   If the json string cannot be decoded, [`Json\Exception\DecodeException` php] is thrown.
-
-  > This function is pure.
 
   !> The maximum nesting depth of the structure being decoded is [`512` php]. <br />
   This function always decodes large integers as their original string value.
@@ -83,6 +81,7 @@ $password = $user['password'];
   ```
 
 * [`@template T` php] <br/>
+  [`@pure` php] <br />
   [`Json\typed(string $json, Type\TypeInterface<T> $type): T` php]
 
   Decode a json encoded string into a typed variable.
@@ -91,8 +90,6 @@ $password = $user['password'];
   * [`$type` php]: The type to decode the json into.
 
   If the json string cannot be decoded, [`Json\Exception\DecodeException` php] is thrown.
-
-  > This function is pure.
 
   !> The maximum nesting depth of the structure being decoded is [`512` php]. <br />
   This function always decodes large integers as their original string value.

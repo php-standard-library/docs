@@ -74,13 +74,12 @@ $c = Math\tan(2); // tan(2)
 
 <div class="api-functions">
 
-* [`Math\sin(float $number): float` php]
+* [`@pure` php] <br />
+  [`Math\sin(float $number): float` php]
 
   Returns the sine of the given number.
 
   * [`$number` php]: The number to calculate the sine of.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -88,13 +87,12 @@ $c = Math\tan(2); // tan(2)
   $a = Math\sin(5.0); // -0.9589242746631385
   ```
 
-* [`Math\cos(float $number): float` php]
+* [`@pure` php] <br />
+  [`Math\cos(float $number): float` php]
 
   Returns the cosine of the given number.
 
   * [`$number` php]: The number to calculate the cosine of.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -102,13 +100,12 @@ $c = Math\tan(2); // tan(2)
   $a = Math\cos(1.0); // 0.5403023058681398
   ```
 
-* [`Math\tan(float $number): float` php]
+* [`@pure` php] <br />
+  [`Math\tan(float $number): float` php]
 
   Returns the tangent of the given number.
 
   * [`$number` php]: The number to calculate the tangent of.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -116,13 +113,12 @@ $c = Math\tan(2); // tan(2)
   $a = Math\tan(4.8); // -11.384870654242922
   ```
 
-* [`Math\asin(float $number): float` php]
+* [`@pure` php] <br />
+  [`Math\asin(float $number): float` php]
 
   Returns the arc sine of the given number.
 
   * [`$number` php]: The number to calculate the arc sine of.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -130,13 +126,12 @@ $c = Math\tan(2); // tan(2)
   $a = Math\asin(0.5); // 0.5235987755982989
   ```
 
-* [`Math\acos(float $number): float` php]
+* [`@pure` php] <br />
+  [`Math\acos(float $number): float` php]
 
   Returns the arc cosine of the given number.
 
   * [`$number` php]: The number to calculate the arc cosine of.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -144,13 +139,12 @@ $c = Math\tan(2); // tan(2)
   $a = Math\acos(0.5); // 1.0471975511965979
   ```
 
-* [`Math\atan(float $number): float` php]
+* [`@pure` php] <br />
+  [`Math\atan(float $number): float` php]
 
   Returns the arc tangent of the given number.
 
   * [`$number` php]: The number to calculate the arc tangent of.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -158,15 +152,14 @@ $c = Math\tan(2); // tan(2)
   $a = Math\atan(-0.5); // -0.4636476090008061
   ```
 
-* [`Math\atan2(float $y, float $x): float` php]
+* [`@pure` php] <br />
+  [`Math\atan2(float $y, float $x): float` php]
 
   Returns the arc tangent of the given coordinates.
 
   * [`$y` php]: The y-coordinate of the point.
 
   * [`$x` php]: The x-coordinate of the point.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -175,13 +168,12 @@ $c = Math\tan(2); // tan(2)
   ```
 
 * [`@template T of int|float` php] <br />
+  [`@pure` php] <br />
   [`Math\abs(T $number): T` php]
 
   Returns the absolute value of the given number.
 
   * [`$number` php]: The number to calculate the absolute value of.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -192,13 +184,12 @@ $c = Math\tan(2); // tan(2)
   $d = Math\abs(-2.5);  // 2.5
   ```
 
-* [`Math\ceil(float $number): float` php]
+* [`@pure` php] <br />
+  [`Math\ceil(float $number): float` php]
 
   Returns the smallest integer greater than or equal to the given number.
 
   * [`$number` php]: The number to calculate the ceiling of.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -209,13 +200,12 @@ $c = Math\tan(2); // tan(2)
   $d = Math\ceil(-2.5);   // -2.0
   ```
 
-* [`Math\floor(float $number): float` php]
+* [`@pure` php] <br />
+  [`Math\floor(float $number): float` php]
 
   Returns the largest integer less than or equal to the given number.
 
   * [`$number` php]: The number to calculate the floor of.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -226,7 +216,8 @@ $c = Math\tan(2); // tan(2)
   $d = Math\floor(-2.5);  // -3.0
   ```
 
-* [`Math\round(float $number, int $precision = 0): float` php]
+* [`@pure` php] <br />
+  [`Math\round(float $number, int $precision = 0): float` php]
 
   Returns the given number rounded to the specified precision.
 
@@ -235,8 +226,6 @@ $c = Math\tan(2); // tan(2)
   For example, a precision of 1 rounds to the nearest tenth whereas a precision of -1 rounds to the nearst nearest.
 
   * [`$number` php]: The number to round.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -251,7 +240,8 @@ $c = Math\tan(2); // tan(2)
   $f = Math\round(-2.5, -1);  // -3.0
   ```
 
-* [`Math\sqrt(float $number): float` php]
+* [`@pure` php] <br />
+  [`Math\sqrt(float $number): float` php]
 
   Returns the square root of the given number.
 
@@ -259,15 +249,14 @@ $c = Math\tan(2); // tan(2)
 
   If the given number is negative, [`Psl\Exception\InvariantViolationException` php] is thrown.
 
-  > This function is pure.
-
   ```php
   use Psl\Math;
 
   $a = Math\sqrt(2); // 1.4142135623730951
   ```
 
-* [`Math\log(float $number, ?float $base = null): float` php]
+* [`@pure` php] <br />
+  [`Math\log(float $number, ?float $base = null): float` php]
 
   Returns the logarithm of the given number.
 
@@ -277,8 +266,6 @@ $c = Math\tan(2); // tan(2)
   If the given base is equal to, or less than, zero, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
   If the given base is equal to one, [`Psl\Exception\InvariantViolationException` php] is thrown.
 
-  > This function is pure.
-
   ```php
   use Psl\Math;
 
@@ -286,13 +273,12 @@ $c = Math\tan(2); // tan(2)
   $b = Math\log(2, 2); // 1.0
   ```
 
-* [`Math\exp(float $number): float` php]
+* [`@pure` php] <br />
+  [`Math\exp(float $number): float` php]
 
   Returns the exponential of the given number.
 
   * [`$number` php]: The number to calculate the exponential of.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -300,7 +286,8 @@ $c = Math\tan(2); // tan(2)
   $a = Math\exp(2); // 7.38905609893065
   ```
 
-* [`Math\div(int $numerator, int $denominator): int` php]
+* [`@pure` php] <br />
+  [`Math\div(int $numerator, int $denominator): int` php]
 
   Returns the integer division of the given numerator by the given denominator.
 
@@ -309,8 +296,6 @@ $c = Math\tan(2); // tan(2)
 
   If the given denominator is zero, `Exception\DivisionByZeroException` is thrown. <br />
   If the given numerator is equal to `Math\INT64_MIN` and the given denominator is equal to `-1`, `Exception\ArithmeticException` is thrown.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -321,13 +306,12 @@ $c = Math\tan(2); // tan(2)
   $d = Math\div(30, 3);   // 10
   ```
 
-* [`Math\sum(list<int> $numbers): int` php]
+* [`@pure` php] <br />
+  [`Math\sum(list<int> $numbers): int` php]
 
   Returns the sum of all the given numbers.
 
   * [`$numbers` php]: The numbers to sum.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -336,13 +320,12 @@ $c = Math\tan(2); // tan(2)
   $b = Math\sum([1, 2, 3, 4]);  // 10
   ```
 
-* [`Math\sum_floats(list<float|int> $numbers): float` php]
+* [`@pure` php] <br />
+  [`Math\sum_floats(list<float|int> $numbers): float` php]
 
   Returns the sum of all the given numbers.
 
   * [`$numbers` php]: The numbers to sum.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -352,6 +335,7 @@ $c = Math\tan(2); // tan(2)
   ```
 
 * [`@template T of int|float` php] <br />
+  [`@pure` php] <br />
   [`Math\clamp(T $number, T $min, T $max): T` php]
 
   Returns the given number clamped to the given range.
@@ -365,8 +349,6 @@ $c = Math\tan(2); // tan(2)
 
   If [`$min` php] is greater than [`$max` php], [`Psl\Exception\InvariantViolationException` php] is thrown.
 
-  > This function is pure.
-
   ```php
   use Psl\Math;
 
@@ -375,7 +357,8 @@ $c = Math\tan(2); // tan(2)
   $c = Math\clamp(3, 1, 3); // 3
   ```
 
-* [`Math\base_convert(non-empty-string $value, int $from_base, int $to_base): string` php]
+* [`@pure` php] <br />
+  [`Math\base_convert(non-empty-string $value, int $from_base, int $to_base): string` php]
 
   Converts the given string in base [`$from_base` php] to base [`$to_base` php], assuming letters a-z are used for digits for bases greater than 10. <br />
   The conversion is done to arbitrary precision. <br />
@@ -387,8 +370,6 @@ $c = Math\tan(2); // tan(2)
   If [`$value` php] is not a valid base [`$from_base` php] number, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
   If [`$from_base` php] and [`$to_base` php] are out of the [2, 36] range, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
 
-  > This function is pure.
-
   ```php
   use Psl\Math;
 
@@ -399,7 +380,8 @@ $c = Math\tan(2); // tan(2)
   $d = Math\base_convert('pphlmw9v', 36, 10); // '2014587925987'
   ```
 
-* [`Math\from_base(non-empty-string $number, int $from_base): int` php]
+* [`@pure` php] <br />
+  [`Math\from_base(non-empty-string $number, int $from_base): int` php]
 
     Converts the given string in base [`$from_base` php] to an integer,  assuming letters a-z are used for digits when [`$from_base` php] > 10. <br />
 
@@ -409,8 +391,6 @@ $c = Math\tan(2); // tan(2)
     If [`$number` php] is not a valid base [`$from_base` php] number, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
     If [`$from_base` php] is out of the [2, 36] range, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
 
-    > This function is pure.
-
     ```php
     use Psl\Math;
 
@@ -419,7 +399,8 @@ $c = Math\tan(2); // tan(2)
     $c = Math\from_base('pphlmw9v', 36); // 2014587925987
     ```
 
-* [`Math\to_base(0|positive-int $number, positive-int $base): non-empty-string` php]
+* [`@pure` php] <br />
+  [`Math\to_base(0|positive-int $number, positive-int $base): non-empty-string` php]
 
     Converts the given non-negative integer to a string in base [`$base` php], using letters a-z for digits when [`$base` php] > 10. <br />
 
@@ -428,8 +409,6 @@ $c = Math\tan(2); // tan(2)
 
     If [`$base` php] is out of the [2, 36] range, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
     If [`$number` php] is negative, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
-
-    > This function is pure.
 
     ```php
     use Psl\Math;
@@ -440,13 +419,12 @@ $c = Math\tan(2); // tan(2)
     ```
 
 * [`@template T of int|float` php] <br />
+  [`@pure` php] <br />
   [`Math\max(list<T> $numbers): ?T` php]
 
   Returns the largest element of the given list, or null if the list is empty.
 
   * [`$numbers` php]: The values to compare.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -457,13 +435,12 @@ $c = Math\tan(2); // tan(2)
   ```
 
 * [`@template T of int|float` php] <br />
+  [`@pure` php] <br />
   [`Math\min(list<T> $numbers): ?T` php]
 
   Returns the smallest element of the given list, or null if the list is empty.
 
   * [`$numbers` php]: The values to compare.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -510,6 +487,7 @@ $c = Math\tan(2); // tan(2)
   ```
 
 * [`@template T of int|float` php] <br />
+  [`@pure` php] <br />
   [`Math\maxva(T $first, T $second, T ...$rest): T` php]
 
   Returns the largest number of all the given numbers.
@@ -517,8 +495,6 @@ $c = Math\tan(2); // tan(2)
   * [`$first` php]: The first value to compare.
   * [`$second` php]: The second value to compare.
   * [`$rest` php]: The rest of the values to compare.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -529,6 +505,7 @@ $c = Math\tan(2); // tan(2)
   ```
 
 * [`@template T of int|float` php] <br />
+  [`@pure` php] <br />
   [`Math\minva(T $first, T $second, T ...$rest): T` php]
 
   Returns the smallest number of all the given numbers.
@@ -536,8 +513,6 @@ $c = Math\tan(2); // tan(2)
   * [`$first` php]: The first value to compare.
   * [`$second` php]: The second value to compare.
   * [`$rest` php]: The rest of the values to compare.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -547,14 +522,13 @@ $c = Math\tan(2); // tan(2)
   $c = Math\minva(1, 2);        // 1
   ```
 
-* [`Math\mean(list<int|float> $numbers): ?float` php]
+* [`@pure` php] <br />
+  [`Math\mean(list<int|float> $numbers): ?float` php]
 
   Returns the arithmetic mean of the given numbers in the list. <br />
   Returns null if the given iterable is empty.
 
   * [`$numbers` php]: The values to calculate the mean from.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;
@@ -564,14 +538,13 @@ $c = Math\tan(2); // tan(2)
   $c = Math\mean([]);            // null
   ```
 
-* [`Math\median(list<int|float> $numbers): ?float` php]
+* [`@pure` php] <br />
+  [`Math\median(list<int|float> $numbers): ?float` php]
 
   Returns the median of the given numbers in the list. <br />
   Returns null if the given iterable is empty.
 
   * [`$numbers` php]: The values to calculate the median from.
-
-  > This function is pure.
 
   ```php
   use Psl\Math;

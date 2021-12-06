@@ -23,7 +23,8 @@ $random_string = SecureRandom\string(256);
 
 <div class="api-functions">
 
-* [`SecureRandom\int(int $min = Math\INT64_MIN, int $max = Math\INT64_MAX): int` php]
+* [`@external-mutation-free` php] <br/>
+  [`SecureRandom\int(int $min = Math\INT64_MIN, int $max = Math\INT64_MAX): int` php]
 
   Returns a cryptographically secure random integer in the given range.
 
@@ -35,8 +36,6 @@ $random_string = SecureRandom\string(256);
 
   The returned value is always greater than or equal to [`$min` php] and less than or equal to [`$max` php].
 
-  > This function does not cause any external mutations.
-
   ```php
   use Psl\SecureRandom;
 
@@ -45,7 +44,8 @@ $random_string = SecureRandom\string(256);
   // 0 <= $random_number <= 4
   ```
 
-* [`SecureRandom\string(0|positive-int $length, ?string $alphabet = null): string` php]
+* [`@external-mutation-free` php] <br/>
+  [`SecureRandom\string(0|positive-int $length, ?string $alphabet = null): string` php]
 
   Returns a securely generated random string of the given length. <br />
   The string is composed of characters from the given alphabet string. <br />
@@ -60,8 +60,6 @@ $random_string = SecureRandom\string(256);
   If [`$length` php] is negative, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
   If it is not possible to gather sufficient entropy, [`SecureRandom\Exception\InsufficientEntropyException` php] is thrown.  <br />
 
-  > This function does not cause any external mutations.
-
   ```php
   use Psl\SecureRandom;
 
@@ -70,7 +68,8 @@ $random_string = SecureRandom\string(256);
   // $random_string is a 32-character string composed of alphanumeric characters
   ```
 
-* [`SecureRandom\bytes(0|positive-int $length): string` php]
+* [`@external-mutation-free` php] <br/>
+  [`SecureRandom\bytes(0|positive-int $length): string` php]
 
   Returns a securely generated random string of the given length. <br />
 
@@ -78,8 +77,6 @@ $random_string = SecureRandom\string(256);
 
   If [`$length` php] is negative, [`Psl\Exception\InvariantViolationException` php] is thrown. <br />
   If it is not possible to gather sufficient entropy, [`SecureRandom\Exception\InsufficientEntropyException` php] is thrown.  <br />
-
-  > This function does not cause any external mutations.
 
   ```php
   use Psl\SecureRandom;
@@ -89,13 +86,12 @@ $random_string = SecureRandom\string(256);
   // $random_bytes is a 32-byte string
   ```
 
-* [`SecureRandom\float(): float` php]
+* [`@external-mutation-free` php] <br/>
+  [`SecureRandom\float(): float` php]
 
   Returns a cryptographically secure random float. <br />
 
   If it is not possible to gather sufficient entropy, [`SecureRandom\Exception\InsufficientEntropyException` php] is thrown.  <br />
-
-  > This function does not cause any external mutations.
 
   ```php
   use Psl\SecureRandom;

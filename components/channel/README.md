@@ -51,7 +51,6 @@ $message = $receiver->receive();
   ```
 
 * [`@template T` php] <br />
-
   [`Channel\unbounded(): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}` php]
 
   Creates an unbounded channel.

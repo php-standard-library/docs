@@ -21,7 +21,8 @@ $random_float = PseudoRandom\float();
 
 <div class="api-functions">
 
-* [`PseudoRandom\int(int $min = Math\INT64_MIN, int $max = Math\INT64_MAX): int` php]
+* [`@external-mutation-free` php] <br/>
+  [`PseudoRandom\int(int $min = Math\INT64_MIN, int $max = Math\INT64_MAX): int` php]
 
   Returns a pseudo-random integer in the given range.
 
@@ -29,8 +30,6 @@ $random_float = PseudoRandom\float();
   * [`$max` php]: The maximum value.
 
   If [`$min` php] is greater than [`$max` php], [`Psl\Exception\InvariantViolationException` php] is thrown.
-
-  > This function does not cause any external mutations.
 
   ```php
   use Psl\PseudoRandom;
@@ -40,7 +39,8 @@ $random_float = PseudoRandom\float();
   // 0 <= $random_number <= 10
   ```
 
-* [`PseudoRandom\float(): float` php]
+* [`@external-mutation-free` php] <br/>
+  [`PseudoRandom\float(): float` php]
 
   Returns a pseudo-random float in the range of [0.0, 1.0].
 
@@ -51,7 +51,5 @@ $random_float = PseudoRandom\float();
 
   // 0.0 <= $random_float <= 1.0
   ```
-
-  > This function does not cause any external mutations.
 
 </div>
