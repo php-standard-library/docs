@@ -438,7 +438,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 
 <div class="api-classes">
 
-* [`class Iter\Iterator<Tk, Tv> extends Countable, SeekableIterator<Tk, Tv>` php]
+* [`final class Iter\Iterator<Tk, Tv> extends Countable, SeekableIterator<Tk, Tv>` php]
 
   The [`Iter\Iterator` php] class is a lazy, seekable, rewindable iterator.
 
