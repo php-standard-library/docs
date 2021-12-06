@@ -20,6 +20,8 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
 
 ### Functions
 
+<div class="api-functions">
+
 * [`Shell\execute(string $command, list<string> $arguments = [], ?string $working_directory = null, array<string, string> $environment = [], bool $escape_arguments = true, ?float $timeout = null): string` php]
 
   Execute an external program.
@@ -38,7 +40,6 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
 
   ```php
   use Psl\Shell;
-  use Psl\Async;
 
   $result = Shell\execute('echo', arguments: ['Hello, World!'], timeout: 1.0); // Hello, World!
   ```
@@ -48,6 +49,9 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
   This non-blocking nature is useful when you want to execute a lot of commands in parallel, and you don't want to block the script.
 
   ```php
+  use Psl\Async;
+  use Psl\Shell;
+
   // execute `sleep 1` 4 times in parallel
   Async\parallel([
     fn() => Shell\execute('sleep', arguments: ['1']),
@@ -62,6 +66,8 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
   We can also set a timeout for the read operation, and if the process is still running after the timeout, [`Shell\Exception\TimeoutException` php] will be thrown.
 
   ```php
+  use Psl\Shell;
+
   try {
     Shell\execute('sleep', ['1'], timeout: 0.5);
   } catch (Shell\Exception\TimeoutException $e) {
@@ -89,7 +95,11 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
   $result = Shell\execute($foo, arguments: $arguments, escape_arguments: false);
   ```
 
+</div>
+
 ### Exceptions
+
+<div class="api-exceptions">
 
 * [`final class Shell\Exception\FailedExecutionException implements Shell\Exception\ExceptionInterface extends Execption` php]
 
@@ -151,3 +161,5 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
     // ... do something.
   }
   ```
+
+</div>

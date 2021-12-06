@@ -25,6 +25,8 @@ Psl\invariant(false === Class\has_constant(Foo::class, 'QUX'), '"Foo" should not
 
 ### Functions
 
+<div class="api-functions">
+
 * [`Class\defined(class-string $class_name): bool` php]
   
   Checks if the class with the given name has already been defined.
@@ -149,3 +151,4 @@ Psl\invariant(false === Class\has_constant(Foo::class, 'QUX'), '"Foo" should not
   Class\is_final(Baz::class); // true
   ```
 
+</div>

@@ -21,6 +21,8 @@ $random_string = SecureRandom\string(256);
 
 ### Functions
 
+<div class="api-functions">
+
 * [`SecureRandom\int(int $min = Math\INT64_MIN, int $max = Math\INT64_MAX): int` php]
 
   Returns a cryptographically secure random integer in the given range.
@@ -103,8 +105,14 @@ $random_string = SecureRandom\string(256);
   // 0.0 <= $random_float <= 1.0
   ```
 
+</div>
+
 ### Exceptions
+
+<div class="api-exceptions">
 
 * [`final class SecureRandom\Exception\InsufficientEntropyException implements SecureRandom\Exception\ExceptionInterface extends Exception` php]
 
   Thrown when it is not possible to gather sufficient entropy.
+
+</div>

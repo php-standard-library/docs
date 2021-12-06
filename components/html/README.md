@@ -20,6 +20,8 @@ IO\write_line(Html\encode_special_characters($name)); // Hello &lt;/&gt;
 
 ### Functions
 
+<div class="api-functions">
+
 * [`Html\encode(string $html, bool $double_encoding = true, Html\Encoding $encoding = Html\Encoding::UTF_8): string` php]
 
   Convert all applicable characters to HTML entities.
@@ -98,8 +100,14 @@ IO\write_line(Html\encode_special_characters($name)); // Hello &lt;/&gt;
   Html\strip_tags('<p>Hello</p>', ['div']); // Hello
   ```
 
+</div>
+
 ### Enums
 
-  * [`Html\Encoding` php]
+<div class="api-enums">
+
+  * [`enum Html\Encoding` php]
 
     defines character set used in conversion.
+
+</div>

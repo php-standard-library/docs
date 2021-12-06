@@ -24,7 +24,10 @@ $message = $receiver->receive();
 
 ### Functions
 
-* [`<T> Channel\bounded(positive-int $capacity): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}` php]
+<div class="api-functions">
+
+* [`@template T` php] <br />
+  [`Channel\bounded(int<1, max> $capacity): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}` php]
     
   Create a bounded channel with the given capacity.
   
@@ -47,7 +50,9 @@ $message = $receiver->receive();
   Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
   ```
 
-* [`<T> Channel\unbounded(): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}` php]
+* [`@template T` php] <br />
+
+  [`Channel\unbounded(): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}` php]
 
   Creates an unbounded channel.
 
@@ -68,13 +73,19 @@ $message = $receiver->receive();
   Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
   ```
 
+</div>
+
 ### Interfaces
+
+<div class="api-interfaces">
 
 * [`interface Channel\ChannelInterface<T> extends Countable` php]
 
   Common interface for all channel types.
 
-  * [`ChannelInterface::getCapacity(): null|0|positive-int` php]
+  <div class="api-methods">
+
+  * [`ChannelInterface::getCapacity(): ?int<0, max>` php]
 
     Returns the capacity of the channel, or null if the channel is unbounded.
 
@@ -247,9 +258,13 @@ $message = $receiver->receive();
     Psl\invariant(true === $sender->isClosed(), 'Channel should be closed');
     ```
 
+  </div>
+
 * [`interface Channel\SenderInterface<T> extends Channel\ChannelInterface<T>` php]
 
   Sender side of the channel
+
+  <div class="api-methods">
 
   * [`SenderInterface::send(T $message): void` php]
 
@@ -318,9 +333,13 @@ $message = $receiver->receive();
     }
     ```
 
+    </div>
+
 * [`interface Channel\ReceiverInterface<T> extends Channel\ChannelInterface<T>` php]
 
   Receiver side of the channel
+
+  <div class="api-methods">
 
   * [`ReceiverInterface::receive(): T` php]
 
@@ -389,7 +408,13 @@ $message = $receiver->receive();
     }
     ```
 
+    </div>
+
+</div>
+
 ### Exceptions
+
+<div class="api-exceptions">
 
 * [`final class Channel\Exception\FullChannelException implements Channel\Exception\ExceptionInterface extends Exception` php]
 
@@ -471,3 +496,5 @@ $message = $receiver->receive();
         // Cannot send to a closed channel.
     }
     ```
+
+</div>

@@ -19,6 +19,8 @@ $random_float = PseudoRandom\float();
 
 ### Functions
 
+<div class="api-functions">
+
 * [`PseudoRandom\int(int $min = Math\INT64_MIN, int $max = Math\INT64_MAX): int` php]
 
   Returns a pseudo-random integer in the given range.
@@ -51,3 +53,5 @@ $random_float = PseudoRandom\float();
   ```
 
   > This function does not cause any external mutations.
+
+</div>

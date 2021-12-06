@@ -24,6 +24,8 @@ Psl\invariant(false === Trait\defined(BazTrait::class), '"BazTrait" should not b
 
 ### Functions
 
+<div class="api-functions">
+
 * [`Trait\defined(string $trait_name): bool` php]
 
   Checks if the trait with the given name has already been defined.
@@ -67,3 +69,5 @@ Psl\invariant(false === Trait\defined(BazTrait::class), '"BazTrait" should not b
     Trait\exists(BazTrait::class); // false
     Trait\exists(IO\ReadHandleConvenienceMethodsTrait::class); // true
     ```
+
+</div>

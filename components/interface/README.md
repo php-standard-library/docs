@@ -24,6 +24,8 @@ Psl\invariant(false === Interface\defined(BazInterface::class), '"BazInterface" 
 
 ### Functions
 
+<div class="api-functions">
+
 * [`Interface\defined(string $interface_name): bool` php]
   
   Checks if the interface with the given name has already been defined.
@@ -67,3 +69,5 @@ Psl\invariant(false === Interface\defined(BazInterface::class), '"BazInterface" 
     Interface\exists(BazInterface::class); // false
     Interface\exists(IO\ReadHandleInterface::class); // true
     ```
+
+</div>

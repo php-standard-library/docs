@@ -18,6 +18,8 @@ if (Runtime\has_extension('parallel')) {
 
 ### Functions
 
+<div class="api-functions">
+
 * [`Runtime\get_version(): non-empty-string` php]
 
   Return the current PHP version as a string in "major.minor.release[extra]" notation.
@@ -159,3 +161,5 @@ if (Runtime\has_extension('parallel')) {
     // ... do something
   }
   ```
+
+</div>

@@ -26,6 +26,8 @@ $password = $user['password'];
 
 ### Functions
 
+<div class="api-functions">
+
 * [`Json\encode(mixed $value, bool $pretty = false, int $flags = 0): string` php]
 
   Returns a string containing the JSON representation of the supplied value.
@@ -80,7 +82,8 @@ $password = $user['password'];
   // stdClass { foo: 'bar' }
   ```
 
-* [`<T> Json\typed(string $json, Type\TypeInterface<T> $type): T` php]
+* [`@template T` php] <br/>
+  [`Json\typed(string $json, Type\TypeInterface<T> $type): T` php]
 
   Decode a json encoded string into a typed variable.
 
@@ -107,7 +110,11 @@ $password = $user['password'];
   // ['foo' => 'bar']
   ```
 
+</div>
+
 ### Exception
+
+<div class="api-exceptions">
 
 * [`final class Json\Exception\EncodeException implements Json\Exception\ExceptionInterface extends Exception` php]
 
@@ -126,7 +133,7 @@ $password = $user['password'];
   }
   ```
 
-* [`Json\Exception\DecodeException implements Json\Exception\ExceptionInterface extends Exception` php]
+* [`final class Json\Exception\DecodeException implements Json\Exception\ExceptionInterface extends Exception` php]
 
   Thrown when the json string cannot be decoded.
 
@@ -152,3 +159,5 @@ $password = $user['password'];
     // ... do something.
   }
   ```
+
+</div>

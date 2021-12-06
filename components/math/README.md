@@ -18,6 +18,8 @@ $c = Math\tan(2); // tan(2)
 
 ### Constants
 
+<div class="api-constants">
+
 * [`const Math\INFINITY` php]
 
   The value of `INFINITY` is `1 / 0` (positive infinity).
@@ -66,7 +68,11 @@ $c = Math\tan(2); // tan(2)
 
   The maximum unsigned integer value representable in a 16-bit binary-coded decimal.
 
+</div>
+
 ### Functions
+
+<div class="api-functions">
 
 * [`Math\sin(float $number): float` php]
 
@@ -168,7 +174,8 @@ $c = Math\tan(2); // tan(2)
   $a = Math\atan2(1.0, 0.8); // 0.8960553845713439
   ```
 
-* [`<T of int|float> Math\abs(T $number): T` php]
+* [`@template T of int|float` php] <br />
+  [`Math\abs(T $number): T` php]
 
   Returns the absolute value of the given number.
 
@@ -344,7 +351,8 @@ $c = Math\tan(2); // tan(2)
   $b = Math\sum_floats([1.1, 2.2, 3.3, 4.4]); // 10.4
   ```
 
-* [`<T of int|float> Math\clamp(T $number, T $min, T $max): T` php]
+* [`@template T of int|float` php] <br />
+  [`Math\clamp(T $number, T $min, T $max): T` php]
 
   Returns the given number clamped to the given range.
 
@@ -431,7 +439,8 @@ $c = Math\tan(2); // tan(2)
     $c = Math\to_base(2014587925987, 36); // 'pphlmw9v'
     ```
 
-* [`<T of int|float> Math\max(list<T> $numbers): ?T` php]
+* [`@template T of int|float` php] <br />
+  [`Math\max(list<T> $numbers): ?T` php]
 
   Returns the largest element of the given list, or null if the list is empty.
 
@@ -447,7 +456,8 @@ $c = Math\tan(2); // tan(2)
   $c = Math\max([]);            // null
   ```
 
-* [`<T of int|float> Math\min(list<T> $numbers): ?T` php]
+* [`@template T of int|float` php] <br />
+  [`Math\min(list<T> $numbers): ?T` php]
 
   Returns the smallest element of the given list, or null if the list is empty.
 
@@ -463,7 +473,8 @@ $c = Math\tan(2); // tan(2)
   $c = Math\min([]);            // null
   ```
 
-* [`<T> Math\max_by(iterable<T> $numbers, (callable(T $value): numeric) $numeric_function): ?T` php]
+* [`@template T` php] <br />
+  [`Math\max_by(iterable<T> $numbers, (callable(T $value): numeric) $numeric_function): ?T` php]
 
   Returns the largest element of the given iterable, or null if the iterable is empty. <br />
   The value for comparison is determined by the given function. <br />
@@ -480,7 +491,8 @@ $c = Math\tan(2); // tan(2)
   $c = Math\max_by([]);                                                       // null
   ```
 
-* [`<T> Math\min_by(iterable<T> $numbers, (callable(T $value): numeric) $numeric_function): ?T` php]
+* [`@template T` php] <br />
+  [`Math\min_by(iterable<T> $numbers, (callable(T $value): numeric) $numeric_function): ?T` php]
 
   Returns the smallest element of the given iterable, or null if the iterable is empty. <br />
   The value for comparison is determined by the given function. <br />
@@ -497,7 +509,8 @@ $c = Math\tan(2); // tan(2)
   $c = Math\min_by([]);                                                       // null
   ```
 
-* [`<T of int|float> Math\maxva(T $first, T $second, T ...$rest): T` php]
+* [`@template T of int|float` php] <br />
+  [`Math\maxva(T $first, T $second, T ...$rest): T` php]
 
   Returns the largest number of all the given numbers.
 
@@ -515,7 +528,8 @@ $c = Math\tan(2); // tan(2)
   $c = Math\maxva(1, 2);        // 2
   ```
 
-* [`<T of int|float> Math\minva(T $first, T $second, T ...$rest): T` php]
+* [`@template T of int|float` php] <br />
+  [`Math\minva(T $first, T $second, T ...$rest): T` php]
 
   Returns the smallest number of all the given numbers.
 
@@ -567,7 +581,11 @@ $c = Math\tan(2); // tan(2)
   $c = Math\median([]);            // null
   ```
 
+</div>
+
 ### Exceptions
+
+<div class="api-exceptions">
 
 * [`final class Math\Exception\DivisionByZeroException implements Math\Exception\ExceptionInterface extends Exception` php]
 
@@ -596,3 +614,4 @@ $c = Math\tan(2); // tan(2)
       // ... handle exception
   }
   ```
+</div>

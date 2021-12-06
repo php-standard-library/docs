@@ -20,7 +20,10 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 
 ### Functions
 
-* [`<T> Iter\all(iterable<T> $iterable, (callable(T): bool) $predicate): bool` php]
+<div class="api-functions">
+
+* [`@template T` php] <br/>
+  [`Iter\all(iterable<T> $iterable, (callable(T): bool) $predicate): bool` php]
 
   Returns true if all values in the iterable satisfy the predicate.
 
@@ -42,7 +45,8 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === false
   ```
 
-* [`<T> Iter\any(iterable<T> $iterable, (callable(T): bool) $predicate): bool` php]
+* [`@template T` php] <br/>
+  [`Iter\any(iterable<T> $iterable, (callable(T): bool) $predicate): bool` php]
 
   Returns true if any value in the iterable satisfies the predicate.
 
@@ -64,7 +68,8 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === false
   ```
 
-* [`<T> Iter\apply(iterable<T> $iterable, (callable(T): void) $function): void` php]
+* [`@template T` php] <br/>
+  [`Iter\apply(iterable<T> $iterable, (callable(T): void) $function): void` php]
 
   Applies a function to all values of an iterable.
 
@@ -80,7 +85,8 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   );
   ```
 
-* [`<T> Iter\contains(iterable<T> $iterable, T $value): bool` php]
+* [`@template T` php] <br/>
+  [`Iter\contains(iterable<T> $iterable, T $value): bool` php]
 
   Returns true if the given iterable contains the value. Strict equality is used.
 
@@ -100,7 +106,9 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === false
   ```
 
-* [`<Tk, Tv> Iter\contains_key(iterable<Tk, Tv> $iterable, Tk $key): bool` php]
+* [`@template Tk` php] <br/>
+  [`@template Tv` php] <br/>
+  [`Iter\contains_key(iterable<Tk, Tv> $iterable, Tk $key): bool` php]
 
   Returns true if the given iterable contains the key. Strict equality is used.
 
@@ -120,7 +128,8 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === false
   ```
 
-* [`<T> Iter\count(iterable<T> $iterable): int` php]
+* [`@template T` php] <br/>
+  [`Iter\count(iterable<T> $iterable): int` php]
 
   Returns the number of elements an iterable contains.
 
@@ -147,7 +156,8 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === 2
   ```
 
-* [`<T> Iter\first(iterable<T> $iterable): ?T` php]
+* [`@template T` php] <br/>
+  [`Iter\first(iterable<T> $iterable): ?T` php]
 
   Returns the first element of an iterable, if the iterable is empty, null will be returned.
 
@@ -163,7 +173,9 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === null
   ```
 
-* [`<Tk, Tv> Iter\first_key(iterable<Tk, Tv> $iterable): ?Tk` php]
+* [`@template Tk` php] <br/>
+  [`@template Tv` php] <br/>
+  [`Iter\first_key(iterable<Tk, Tv> $iterable): ?Tk` php]
 
   Returns the first key of an iterable, if the iterable is empty, null will be returned.
 
@@ -179,7 +191,8 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === null
   ```
 
-* [`<T> Iter\last(iterable<T> $iterable): ?T` php]
+* [`@template T` php] <br/>
+  [`Iter\last(iterable<T> $iterable): ?T` php]
 
   Returns the last element of an iterable, if the iterable is empty, null will be returned.
 
@@ -195,7 +208,9 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === null
   ```
 
-* [`<Tk, Tv> Iter\last_key(iterable<Tk, Tv> $iterable): ?Tk` php]
+* [`@template Tk` php] <br/>
+  [`@template Tv` php] <br/>
+  [`Iter\last_key(iterable<Tk, Tv> $iterable): ?Tk` php]
 
   Returns the last key of an iterable, if the iterable is empty, null will be returned.
 
@@ -211,7 +226,8 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === null
   ```
 
-* [`<T> Iter\is_empty(iterable<T> $iterable): bool` php]
+* [`@template T` php] <br/>
+  [`Iter\is_empty(iterable<T> $iterable): bool` php]
 
   Returns true if the given iterable is empty.
 
@@ -229,7 +245,8 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === true
   ```
 
-* [`<T> Iter\random(iterable<T> $iterable): T` php]
+* [`@template T` php] <br/>
+  [`Iter\random(iterable<T> $iterable): T` php]
 
   Retrieve a random value from a non-empty iterable.
 
@@ -247,7 +264,9 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === null
   ```
 
-* [`<T, Ts> Iter\reduce(iterable<T> $iterable, (callable(Ts, T): Ts) $function, Ts $initial): Ts` php]
+* [`@template T` php] <br/>
+  [`@template Ts` php] <br/>
+  [`Iter\reduce(iterable<T> $iterable, (callable(Ts, T): Ts) $function, Ts $initial): Ts` php]
 
   Reduces an iterable to a single value.
 
@@ -270,7 +289,10 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === 10
   ```
 
-* [`<Tk, Tv, Ts> Iter\reduce_keys(iterable<Tk, Tv> $iterable, (callable(Ts, Tk): Ts) $function, Ts $initial): Ts` php]
+* [`@template Tk` php] <br/>
+  [`@template Tv` php] <br/>
+  [`@template Ts` php] <br/>
+  [`Iter\reduce_keys(iterable<Tk, Tv> $iterable, (callable(Ts, Tk): Ts) $function, Ts $initial): Ts` php]
 
   Reduces an iterable to a single value.
 
@@ -293,7 +315,10 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === 6
   ```
 
-* [`<Tk, Tv, Ts> Iter\reduce_with_keys(iterable<Tk, Tv> $iterable, (callable(Ts, Tk, Tv): Ts) $function, Ts $initial): Ts` php]
+* [`@template Tk` php] <br/>
+  [`@template Tv` php] <br/>
+  [`@template Ts` php] <br/>
+  [`Iter\reduce_with_keys(iterable<Tk, Tv> $iterable, (callable(Ts, Tk, Tv): Ts) $function, Ts $initial): Ts` php]
 
   Reduces an iterable to a single value.
 
@@ -317,7 +342,8 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // $result === 13
   ```
 
-* [`<T> Iter\search(iterable<T> $iterable, (callable(T): bool) $predicate): ?int` php]
+* [`@template T` php] <br/>
+  [`Iter\search(iterable<T> $iterable, (callable(T): bool) $predicate): ?int` php]
 
   Searches an iterable until a predicate returns true, then returns the value of the matching element.
 
@@ -333,7 +359,9 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   }
   ```
 
-* [`<Tk, Tv> Iter\rewindable(Generator<Tk, Tv> $generator): Iter\Iterator<Tk, Tv>` php]
+* [`@template Tk` php] <br/>
+  [`@template Tv` php] <br/>
+  [`Iter\rewindable(Generator<Tk, Tv> $generator): Iter\Iterator<Tk, Tv>` php]
 
   Create a rewindable iterator from the given generator without exhausting the generator immediately.
 
@@ -384,7 +412,9 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   // iterator: end
   ```
 
-* [`<Tk, Tv> Iter\to_iterator(iterable<Tk, Tv> $iterable): Iter\Iterator<Tk, Tv>` php]
+* [`@template Tk` php] <br/>
+  [`@template Tv` php] <br/>
+  [`Iter\to_iterator(iterable<Tk, Tv> $iterable): Iter\Iterator<Tk, Tv>` php]
 
   Copy the iterable into an [`Iter\Iterator` php].
 
@@ -402,13 +432,21 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   }
   ```
 
+</div>
+
 ### Classes
+
+<div class="api-classes">
 
 * [`class Iter\Iterator<Tk, Tv> extends Countable, SeekableIterator<Tk, Tv>` php]
 
   The [`Iter\Iterator` php] class is a lazy, seekable, rewindable iterator.
 
-  * [`<Tsk, Tsv> static Iter\Iterator::from((callable(): iterable<Tsk, Tsv>) $factory): Iter\Iterator<Tsk, Tsv>` php]
+  <div class="api-methods">
+
+  * [`@template Tsk` php] <br />
+    [`@template Tsv` php] <br />
+    [`static Iter\Iterator::from((callable(): iterable<Tsk, Tsv>) $factory): Iter\Iterator<Tsk, Tsv>` php]
 
     Create an iterator from a factory.
 
@@ -426,7 +464,9 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
     // $iterator is Iter\Iterator<int, int>
     ```
 
-  * [`<Tsk, Tsv> static Iter\Iterator::create(iterable $iterable): Iter\Iterator<Tsk, Tsv>` php]
+  * [`@template Tsk` php] <br />
+    [`@template Tsv` php] <br />
+    [`static Iter\Iterator::create(iterable $iterable): Iter\Iterator<Tsk, Tsv>` php]
 
     Create an iterator from an iterable.
 
@@ -606,3 +646,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 
     // $count === 3
     ```
+
+    </div>
+
+</div>
