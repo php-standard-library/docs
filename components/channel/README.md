@@ -7,6 +7,7 @@ The channel component of PSL provides a way to create a channels for communicati
 ## Usage
 
 ```php
+use Psl\Async;
 use Psl\Channel;
 
 /**
@@ -15,8 +16,10 @@ use Psl\Channel;
  */
 [$receiver, $sender] = Channel\unbounded();
 
-$sender->send('Hello');
+// send a message to the channel after 1 second.
+Async\Scheduler::delay(1,  static fn() => $sender->send('Hello'));
 
+// wait for the message.
 $message = $receiver->receive();
 ```
 
