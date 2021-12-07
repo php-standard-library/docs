@@ -81,7 +81,7 @@ if (Runtime\has_extension('parallel')) {
 
   Find out whether an $extension is loaded.
 
-  * `$extension`: The name of the extension to check.
+  * [`$extension` php]: The name of the extension to check.
 
   ```php
   use Psl\Runtime;
