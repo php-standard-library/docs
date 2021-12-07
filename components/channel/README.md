@@ -17,7 +17,7 @@ use Psl\Channel;
 [$receiver, $sender] = Channel\unbounded();
 
 // send a message to the channel after 1 second.
-Async\Scheduler::delay(1,  static fn() => $sender->send('Hello'));
+Async\Scheduler::delay(1, static fn() => $sender->send('Hello'));
 // wait for the message.
 $message = $receiver->receive();
 ```
