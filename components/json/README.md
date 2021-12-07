@@ -45,11 +45,8 @@ $password = $user['password'];
   use Psl\Json;
 
   $json = Json\encode(['foo' => 'bar']);
-
   // {"foo":"bar"}
-
   $json = Json\encode(['foo' => 'bar'], true);
-
   // {
   //   "foo": "bar"
   // }
@@ -72,10 +69,8 @@ $password = $user['password'];
   use Psl\Json;
 
   $json = '{"foo":"bar"}';
-
   $data = Json\decode($json);
   // ['foo' => 'bar']
-
   $data = Json\decode($json, false);
   // stdClass { foo: 'bar' }
   ```
@@ -99,11 +94,9 @@ $password = $user['password'];
   use Psl\Type;
 
   $json = '{"foo":"bar"}';
-
   $data = Json\typed($json, Type\shape([
     'foo' => Type\string(),
   ]));
-
   // ['foo' => 'bar']
   ```
 

@@ -18,7 +18,6 @@ use Psl\Channel;
 
 // send a message to the channel after 1 second.
 Async\Scheduler::delay(1,  static fn() => $sender->send('Hello'));
-
 // wait for the message.
 $message = $receiver->receive();
 ```
@@ -51,7 +50,6 @@ $message = $receiver->receive();
   [$receiver, $sender] = Channel\bounded(1);
 
   $sender->send('Hello');
-
   Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
   ```
 
@@ -73,7 +71,6 @@ $message = $receiver->receive();
   [$receiver, $sender] = Channel\unbounded();
 
   $sender->send('Hello');
-
   Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
   ```
 
@@ -129,13 +126,9 @@ $message = $receiver->receive();
     [$receiver, $sender] = Channel\unbounded();
 
     Psl\invariant(true === $receiver->isEmpty(), 'Channel should be empty');
-
     $sender->send('Hello');
-
     Psl\invariant(false === $receiver->isEmpty(), 'Channel should not be empty');
-
     $receiver->receive();
-
     Psl\invariant(true === $receiver->isEmpty(), 'Channel should be empty');
     ```
 
@@ -156,14 +149,10 @@ $message = $receiver->receive();
     [$receiver, $sender] = Channel\bounded(2);
 
     Psl\invariant(false === $receiver->isFull(), 'Channel should not be full');
-
     $sender->send('Hello');
     $sender->send('World');
-
     Psl\invariant(true === $receiver->isFull(), 'Channel should be full');
-
     $receiver->receive();
-
     Psl\invariant(false === $receiver->isFull(), 'Channel should not be full');
 
     /**
@@ -190,13 +179,9 @@ $message = $receiver->receive();
     [$receiver, $sender] = Channel\unbounded();
 
     Psl\invariant(0 === $receiver->count(), 'Channel should be empty');
-
     $sender->send('Hello');
-
     Psl\invariant(1 === $receiver->count(), 'Channel should have 1 item');
-
     $receiver->receive();
-
     Psl\invariant(0 === $receiver->count(), 'Channel should be empty');
     ```
 
@@ -219,13 +204,11 @@ $message = $receiver->receive();
     $sender->send('Hello');
 
     Psl\invariant(false === $receiver->isClosed(), 'Channel should not be closed');
-
+    // Close the channel.
     $receiver->close();
-
     Psl\invariant(true === $receiver->isClosed(), 'Channel should be closed');
-
     Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
-    
+
     try {
         $receiver->receive();
     } catch (Channel\Exception\ClosedChannelException $e) {
@@ -292,11 +275,10 @@ $message = $receiver->receive();
 
     // Send a message to the channel immediately.
     $sender->send('Hello');
-
-    Async\Scheduler::delay(0.1, function () use ($receiver) {
+    // Receive the message from the channel, after 1 second.
+    Async\Scheduler::delay(1, function () use ($receiver) {
         Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
     });
-
     // Send a message to the channel, waiting if the channel is full.
     $sender->send('World');
     ```
@@ -323,10 +305,6 @@ $message = $receiver->receive();
 
     // Try to send a message to the channel immediately, without waiting.
     $sender->trySend('Hello');
-
-    Async\Scheduler::delay(0.1, function () use ($receiver) {
-        Psl\invariant('Hello' === $receiver->receive(), 'Should receive "Hello"');
-    });
 
     try {
         // Try to send a message to the channel immediately, without waiting.
@@ -364,8 +342,8 @@ $message = $receiver->receive();
     [$receiver, $sender] = Channel\bounded(1);
 
     $sender->send('Hello');
-
-    Async\Scheduler::delay(0.1, function () use ($sender) {
+    // Send a message to the channel, after 1 second.
+    Async\Scheduler::delay(1, function () use ($sender) {
         $sender->send('World');
     });
 
@@ -395,11 +373,6 @@ $message = $receiver->receive();
     [$receiver, $sender] = Channel\bounded(1);
 
     $sender->send('Hello');
-
-    Async\Scheduler::delay(0.1, function () use ($sender) {
-        $sender->send('World');
-    });
-
     // Try to receive a message from the channel immediately, without waiting.
     Psl\invariant('Hello' === $receiver->tryReceive(), 'Should receive "Hello"');
 
@@ -408,7 +381,6 @@ $message = $receiver->receive();
       $receiver->tryReceive();
     } catch (Channel\Exception\EmptyChannelException $e) {
         // Cannot receive from an empty channel.
-        // The second message 'World' has not been sent yet.
     }
     ```
 
@@ -482,10 +454,10 @@ $message = $receiver->receive();
      */
     [$receiver, $sender] = Channel\unbounded();
 
+    // Send a message to the channel.
     $sender->send('Hello');
-
+    // Close the channel.
     $receiver->close();
-
     Psl\invaraint('Hello' === $receiver->receive(), 'Should receive "Hello"');
 
     try {
