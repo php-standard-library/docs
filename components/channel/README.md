@@ -27,13 +27,15 @@ $message = $receiver->receive();
 <div class="api-functions">
 
 * [`@template T` php] <br />
-  [`Channel\bounded(int<1, max> $capacity): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}` php]
+  [`Channel\bounded(positive-int $capacity): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}` php]
     
   Create a bounded channel with the given capacity.
   
   The created channel has space to hold at most [`$capacity` php] messages at a time.
   
   * [`$capacity` php]: The capacity of the channel.
+
+  If [`$capacity` php] is not a positive integer, [`Psl\Exception\InvariantViolationException` php] is thrown.
 
   ```php
   use Psl;
@@ -84,7 +86,7 @@ $message = $receiver->receive();
 
   <div class="api-methods">
 
-  * [`ChannelInterface::getCapacity(): ?int<0, max>` php]
+  * [`ChannelInterface::getCapacity(): ?positive-int` php]
 
     Returns the capacity of the channel, or null if the channel is unbounded.
 
