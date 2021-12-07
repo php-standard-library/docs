@@ -586,9 +586,9 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 
     Seek to the given position.
 
-    * `$position`: The position to seek to.
+    * [`$position` php]: The position to seek to.
 
-    If `$position` is out-of-bounds, `Psl\Exception\InvariantViolationException` is thrown.
+    If [`$position` php] is out-of-bounds, [`Psl\Exception\InvariantViolationException` php] is thrown.
 
     ```php
     use Psl\Iter;
