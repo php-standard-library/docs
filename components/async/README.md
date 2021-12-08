@@ -11,19 +11,26 @@ use Psl\IO;
 use Psl\Async;
 use Psl\Shell;
 
-Async\Scheduler::onSignal(SIGINT, function (): never {
-    IO\write_line('SIGINT received, stopping...');
-    exit(0);
+Async\main(static function(): int {
+  $watcher = Async\Scheduler::onSignal(SIGINT, function (): never {
+      IO\write_error_line('SIGINT received, stopping...');
+      exit(0);
+  });
+
+  Async\Scheduler::unreference($watcher);
+
+  IO\write_error_line('Press Ctrl+C to stop');
+
+  Async\parallel([
+    static fn(): string => Shell\execute('sleep', ['3']),
+    static fn(): string => Shell\execute('echo', ['Hello World!']),
+    static fn(): string => Shell\execute('echo', ['Hello World!']),
+  ]);
+
+  IO\write_error_line('Done!');
+
+  return 0;
 });
-
-IO\write_line('Press Ctrl+C to stop');
-
-Async\parallel(
-  static fn(): string => Shell\execute('echo', ['Hello World!']),
-  static fn(): string => Shell\execute('echo', ['Hello World!']),
-);
-
-IO\write_line('Done!');
 ```
 
 ## API
@@ -31,6 +38,33 @@ IO\write_line('Done!');
 ### Functions
 
 <div class="api-functions">
+
+* [`Async\main((callable(): int|Async\Awaitable<int>) $callable): never` php]
+
+  Execute [`$callable` php] in an async context, then exit with returned exit code.
+
+  If [`$callable` php] returns an [`Async\Awaitable` php], it *MUST* resolve with an exit code.
+
+  After executing [`$callable` php], the event loop will keep running until there's no more callables to be executed.
+
+  * [`$callable` php]: The application entry point.
+
+  ```php
+  use Psl\Async;
+  use Psl\IO;
+
+  Async\main(static function(): int {
+    Async\Scheduler::delay(1.0, static function(): void {
+      IO\write_line('hello');
+    });
+
+    return 0;
+  });
+
+  // Output:
+  // hello
+  ```
+
 
 * [`@template T` php] <br />
   [`Async\run((callable(): T) $callable, ?float $timeout = null): Async\Awaitable<T>` php]
