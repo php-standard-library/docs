@@ -417,7 +417,7 @@ Async\main(static function(): int {
 
 <div class="api-classes">
 
-* [`final class Awaitable<T> implements Promise\PromiseInterface<T>` php]
+* [`final class Async\Awaitable<T> implements Promise\PromiseInterface<T>` php]
 
   An awaitable is a promise that can be awaited.
 
@@ -640,7 +640,7 @@ Async\main(static function(): int {
 
   </div>
 
-* [`final class Deferred<T>` php]
+* [`final class Async\Deferred<T>` php]
 
   ?> The [`Async\Deferred` php] API described below is an advanced API that many applications probably don’t need.
   Use [`Async\run(...)` php], and other [`Async`] combinators when possible.
@@ -739,7 +739,7 @@ Async\main(static function(): int {
 
   </div>
 
-* [`final class Scheduler` php]
+* [`final class Async\Scheduler` php]
 
   Psl wrapper around Revolt event-loop.
 
@@ -860,5 +860,82 @@ Async\main(static function(): int {
 
 <div class="api-exceptions">
 
+* [`final class Async\Exception\ComositeException` php]
+
+  A [`CompositeException` php] that can be used to wrap multiple [`Exception` php]s.
+
+  <div class="api-methods">
+
+  * [`CompositeException::__construct(non-empty-array<array-key, Exception> $reasons)` php]
+
+    Constructs a new [`CompositeException` php] with the given [`$reasons` php].
+
+    ```php
+    use Psl\Async;
+
+    $exception = new Async\Exception\CompositeException([
+      new Exception('Something went wrong!'),
+      new Exception('Something else went wrong!'),
+    ]);
+    ```
+
+  * [`CompositeException::getReasons(): non-empty-array<array-key, Exception>` php]
+
+    Returns the [`$exceptions` php] that were wrapped.
+
+    ```php
+    use Psl\Async;
+
+    $exception = new Async\Exception\CompositeException([
+      new Exception('Something went wrong!'),
+      new Exception('Something else went wrong!'),
+    ]);
+
+    $exceptions = $exception->getReasons();
+    ```
+
+  </div>
+
+* [`final class Async\Exception\TimeoutException` php]
+
+  A [`TimeoutException` php] is thrown when a task is not completed within the given [`$timeout` php].
+
+  ```php
+  use Psl\Async;
+  use Psl\IO;
+
+  $awaitable = Async\run(static function(): void {
+    Async\sleep(4);
+  }, timeout: 1.0);
+
+  try {
+    $awaitable->await();
+  } catch (Async\Exception\TimeoutException $exception) {
+    IO\write_error_line('Task timed out!');
+  }
+  ```
+
+* [`final class Async\Exception\UnhandledAwaitableException` php]
+
+  A [`UnhandledAwaitableException` php] is thrown from the scheduler when a failed [`Awaitable` php] is not handled.
+
+  ```php
+  use Psl\Async;
+
+  Async\run(static function(): void {
+    throw new Exception('Something went wrong!');
+  });
+
+  try {
+    Async\Scheduler::run();
+  } catch (Async\Exception\UnhandledAwaitableException $exception) {
+    IO\write_error_line('Unhandled awaitable!');
+    IO\write_error_line('Previous exception: %s', $exception->getPrevious()->getMessage());
+  }
+
+  // Output:
+  // Unhandled awaitable!
+  // Previous exception: Something went wrong!
+  ```
 </div>
 
