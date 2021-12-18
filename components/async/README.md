@@ -446,9 +446,9 @@ Async\main(static function(): int {
     $result = $awaitable->await(); // 'hello'
     ```
 
-  * [`static Awaitable::error(Throwable $throwable): Awaitable<never>` php]
+  * [`static Awaitable::error(Exception $exception): Awaitable<never>` php]
 
-    Create an awaitable that fails with the given [`$throwable` php].
+    Create an awaitable that fails with the given [`$exception` php].
 
     ```php
     use Psl\Async;
@@ -534,7 +534,7 @@ Async\main(static function(): int {
     ```
   
   * [`@template Ts` php] <br />
-    [`Awaitable::then((callable(T): Ts) $on_success, (callable(Throwable): Ts) $on_failure): Awaitable<Ts>` php]
+    [`Awaitable::then((Closure(T): Ts) $success, (Closure(Exception): Ts) $failure): Awaitable<Ts>` php]
 
     Attaches a callback that is invoked if this awaitable completes.
 
@@ -639,9 +639,9 @@ Async\main(static function(): int {
     $result = $deferred->getAwaitable()->await(); // 'hello'
     ```
 
-  * [`Deferred::error(Throwable $throwable): void` php]
+  * [`Deferred::error(Exception $exception): void` php]
 
-    Makes the [`Async\Awaitable` php] fail with the given [`$throwable` php].
+    Makes the [`Async\Awaitable` php] fail with the given [`$exception` php].
 
     ```php
     use Psl\Async;
