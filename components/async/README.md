@@ -536,10 +536,10 @@ Async\main(static function(): int {
   * [`@template Ts` php] <br />
     [`Awaitable::then((Closure(T): Ts) $success, (Closure(Exception): Ts) $failure): Awaitable<Ts>` php]
 
-    Attaches a callback that is invoked if this awaitable completes.
+    Attaches callbacks that are invoked when this awaitable is completed.
 
-    The returned awaitable is completed with the return value of the callback,
-    or errors with an exception thrown from the callback.
+    The returned awaitable is resolved with the return value of the callback,
+    or rejected with an exception thrown from the callback.
 
     ```php
     use Psl;
@@ -557,6 +557,71 @@ Async\main(static function(): int {
 
     $result = $awaitable->await(); // 'hello world'
     ```
+
+  * [`@template Ts` php] <br />
+    [`Awaitable::map((Closure(T): Ts) $success): Awaitable<Ts>` php]
+
+    Attaches a callback that is invoked if this awaitable is completed successfully.
+
+    The returned awaitable is resolved with the return value of the callback,
+    or rejected with an exception thrown from the callback.
+
+    ```php
+    use Psl\Async;
+    use Psl\Str;
+
+    $awaitable = Async\run(static function(): string {
+      return 'hello';
+    });
+
+    $awaitable = $awaitable
+      ->map(static fn($result) => Str\format('%s world', $result));
+
+    $result = $awaitable->await(); // 'hello world'
+    ```
+
+  * [`@template Ts` php] <br />
+    [`Awaitable::catch((Closure(Exception): Ts) $failure): Awaitable<T|Ts>` php]
+
+    Attaches a callback that is invoked if this awaitable is completed with an error.
+
+    The returned awaitable is resolved with the return value of the callback,
+    or rejected with an exception thrown from the callback.
+
+    ```php
+    use Psl\Async;
+
+    $awaitable = Async\run(static function(): string {
+      throw new Exception('Something went wrong!');
+    });
+
+    $awaitable = $awaitable
+      ->catch(static fn($error) => $error->getMessage());
+
+    $result = $awaitable->await(); // 'Something went wrong!'
+    ```
+
+  * [`Awaitable::always((Closure(): void) $always): Awaitable<T>` php]
+
+    Attaches a callback that is invoked when this awaitable is completed.
+
+    ```php
+    use Psl\IO;
+    use Psl\Async;
+
+    $awaitable = Async\run(static function(): string {
+      return 'hello';
+    });
+
+    $awaitable = $awaitable->always(static function(): void {
+      IO\write_line('done');
+    });
+
+    $result = $awaitable->await(); // 'hello'
+    // Output:
+    // done
+    ```
+
 
   * [`Awaitable::ignore(): this` php]
 
