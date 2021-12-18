@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The `Fun` component brings functional programming into PHP.
+The Fun component brings functional programming into PHP.
 
 ## Usage
 

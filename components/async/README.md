@@ -417,7 +417,7 @@ Async\main(static function(): int {
 
 <div class="api-classes">
 
-* [`final class Awaitable<T>` php]
+* [`final class Awaitable<T> implements Promise\PromiseInterface<T>` php]
 
   An awaitable is a promise that can be awaited.
 

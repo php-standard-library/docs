@@ -25,6 +25,7 @@
   * [Network](components/network/)
   * [Observer](components/observer/)
   * [Password](components/password/)
+  * [Promise](components/promise/)
   * [PseudoRandom](components/pseudo-random/)
   * [RandomSequence](components/random-sequence/)
   * [Regex](components/regex/)
