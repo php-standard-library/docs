@@ -11,7 +11,7 @@ use Psl\Async;
 
 $server = TCP\Server::create('localhost', 3030);
 
-IO\write_error_line('Server is listening on http://localhost:3030');
+IO\write_error_line('Server is listening on tcp://localhost:3030');
 
 while(true) {
   $connection = $server->nextConnection();
@@ -100,6 +100,7 @@ while(true) {
     Get the next connection from the server.
 
     If the server is closed, [`Network\Exception\AlreadyStoppedException` php] is thrown.
+    If failed to accept incoming connection, [`Network\Exception\RuntimeException` php] is thrown.
 
     ```php
     use Psl\TCP;
@@ -110,6 +111,28 @@ while(true) {
 
       // ...
     }
+    ```
+
+  * [`TCP\Server::getLocalAddress(): Network\Address` php]
+
+    Return the local (listening) address for the server.
+
+    If the server is closed, [`Network\Exception\AlreadyStoppedException` php] is thrown.
+    If failed to retrieve local address, [`Network\Exception\RuntimeException` php] is thrown.
+
+    ```php
+    use Psl\IO;
+    use Psl\TCP;
+
+    $server = TCP\Server::create('localhost', 3030);
+    $address = $server->getLocalAddress();
+
+    // Server address scheme: tcp
+    IO\write_error_line('Server address scheme: %s', $address->scheme->value);
+    // Server address host: localhost
+    IO\write_error_line('Server address host: %s', $address->host);
+    // Server address port: 3030
+    IO\write_error_line('Server address port: %d', $address->port);
     ```
   
   * [`TCP\Server::close(): void` php]
