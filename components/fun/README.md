@@ -63,7 +63,7 @@ $admin = Fun\when(
   Psl\invariant($calculate(2) === 8, 'Result is 8');
   ```
 
-* [`template T` php] <br />
+* [`@template T` php] <br />
   [`@pure` php] <br />
   [`Fun\lazy((Closure(): T) $initializer): (Closure(): T)` php]
 
@@ -104,7 +104,7 @@ $admin = Fun\when(
   $b = Dict\take($stream(), 20); // [11...30]
   ```
 
-* [`template T` php] <br />
+* [`@template T` php] <br />
   [`@pure` php] <br />
   [`Fun\pipe((Closure(T): T) ...$stages): (Closure(): T)` php]
 
@@ -156,7 +156,7 @@ $admin = Fun\when(
   }
   ```
 
-* [`template T` php] <br />
+* [`@template T` php] <br />
   [`@pure` php] <br />
   [`Fun\tap((Closure(T): void) $callback): (Closure(T): T)` php]
 
@@ -173,8 +173,8 @@ $admin = Fun\when(
   // hello
   ```
 
-* [`template Ti` php] <br />
-  [`template To` php] <br />
+* [`@template Ti` php] <br />
+  [`@template To` php] <br />
   [`@pure` php] <br />
   [`Fun\when((Closure(Ti): bool) $condition, (Closure(Ti): To) $then, (Closure(Ti): To) $else): (Closure(Ti): To)` php]
 
