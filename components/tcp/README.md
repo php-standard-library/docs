@@ -36,7 +36,7 @@ while(true) {
 
 <div class="api-functions">
 
-* [`TCP\connect(non-empty-string $host, positive-int $port, ?ConnectOptions $options = null, float $timeout = null)` php]
+* [`TCP\connect(non-empty-string $host, positive-int|0 $port, ?ConnectOptions $options = null, float $timeout = null): Network\StreamSocketInterface` php]
 
   Connect to a TCP server.
   
