@@ -191,6 +191,6 @@ $admin = Fun\when(
   );
 
   Psl\invariant($when(1) === 2, 'Result is 2');
-  Psl\invariant($when(-1) === 3, 'Result is 3');
+  Psl\invariant($when(-1) === -3, 'Result is -3');
   ```
 </div>
