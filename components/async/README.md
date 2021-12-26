@@ -21,7 +21,7 @@ Async\main(static function(): int {
 
   IO\write_error_line('Press Ctrl+C to stop');
 
-  Async\parallel([
+  Async\concurrently([
     static fn(): string => Shell\execute('sleep', ['3']),
     static fn(): string => Shell\execute('echo', ['Hello World!']),
     static fn(): string => Shell\execute('echo', ['Hello World!']),
@@ -293,9 +293,9 @@ Async\main(static function(): int {
 
 * [`@template Tk of array-key` php] <br />
   [`@template Tv` php] <br />
-  [`Async\parallel(iterable<Tk, (callable(): Tv)> $functions): array<Tk, Tv>` php]
+  [`Async\concurrently(iterable<Tk, (callable(): Tv)> $functions): array<Tk, Tv>` php]
 
-  Run the iterable of functions in parallel, without waiting until the previous function has completed.
+  Run the iterable of functions concurrently, without waiting until the previous function has completed.
 
   If one of the functions fails, the exception will be thrown immediately, and the result of the other functions will be ignored.
 
@@ -318,17 +318,17 @@ Async\main(static function(): int {
     },
   ];
 
-  $results = Async\parallel($functions); // ['hello', 'world']
+  $results = Async\concurrently($functions); // ['hello', 'world']
   ```
 
-  ?> [`Async\parallel(...)` php] is about kicking-off I/O functions in parallel, not about parallel execution of code. <br />
+  ?> [`Async\concurrently(...)` php] is about kicking-off I/O functions concurrently, not about concurrently execution of code. <br />
   If your functions do not use any timers or perform any non-blocking I/O, they will actually be executed in series.
 
   ```php
   use Psl\Async;
 
   // the following runs in series, as `file_get_contents` is blocking.
-  Async\parallel([
+  Async\concurrently([
     static fn() => file_get_contents('/etc/hosts'),
     static fn() => file_get_contents('/etc/resolv.conf'),
   ]);
@@ -341,7 +341,7 @@ Async\main(static function(): int {
   use Psl\Async;
   use Psl\Shell;
 
-  [$version, $foo] = Async\parallel([
+  [$version, $foo] = Async\concurrently([
     Async\reflect(static fn() => Shell\execute('php', ['-v'])),
     Async\reflect(static fn() => Shell\execute('php', ['-r', 'foo();'])),
   ]);
@@ -361,7 +361,7 @@ Async\main(static function(): int {
   use Psl;
   use Psl\Async;
 
-  $results = Async\parallel([
+  $results = Async\concurrently([
     Async\reflect(static fn() => 'hello'),
     Async\reflect(static fn() => throw new Exception('Something went wrong!')),
   ]);
@@ -382,7 +382,7 @@ Async\main(static function(): int {
 
   $time = time();
 
-  Async\parallel([
+  Async\concurrently([
     static fn() => Async\sleep(2),
     static fn() => Async\sleep(2),
     static fn() => Async\sleep(2),
@@ -622,7 +622,6 @@ Async\main(static function(): int {
     // done
     ```
 
-
   * [`Awaitable::ignore(): this` php]
 
     Do not forward unhandled errors to the event loop handler.
@@ -637,6 +636,165 @@ Async\main(static function(): int {
     // No exception thrown
     Async\Scheduler::run();
     ```
+
+  </div>
+
+* [`final class Async\Semaphore<Tin, Tout>` php]
+
+  Run an operation with a limit on number of ongoing asynchronous jobs.
+
+  All operations must have the same input type ([`Tin` php]) and output type ([`Tout` php]), and be processed by the same function;
+
+  [`Tin` php] may be a callable invoked by the [`$operation` php] for maximum flexibility, however this pattern is best avoided in favor of creating semaphores with a more narrow process.
+
+  ```php
+  use Psl\Async;
+  use Psl\IO;
+
+  $semaphore = new Async\Semaphore(2, static function(int $input): void {
+    IO\write_error_line('> started : %d', $input);
+    Async\sleep(1);
+    IO\write_error_line('> finished: %d', $input);
+  });
+
+  Async\concurrently([
+    fn() => $semaphore->waitFor(1),
+    fn() => $semaphore->waitFor(2),
+    fn() => $semaphore->waitFor(3),
+  ]);
+
+  // Output:
+  // > started: 1
+  // > started: 2
+  // > finished: 1
+  // > started: 3
+  // > finished: 2
+  // > finished: 3
+  ```
+
+  <div class="api-methods">
+
+    * [`Semaphore::waitFor(Tin $input): Tout` php]
+
+      Run the operation using the given [`$input` php].
+
+      If the concurrency limit has been reached, this method will wait until one of the ingoing operations has completed.
+
+      ```php
+      use Psl\Async;
+
+      $semaphore = new Async\Semaphore(2, static function(int $input): void {
+          Async\sleep(1);
+          return $input + 1;
+      });
+
+      $awaitables = [];
+      $awaitables[] = Async\run(fn() => $semaphore->waitFor(1));
+      $awaitables[] = Async\run(fn() => $semaphore->waitFor(2));
+      $awaitables[] = Async\run(fn() => $semaphore->waitFor(3));
+
+      $results = Async\all($awaitables); // [2, 3, 4]
+      ```
+
+    * [`Semaphore::cancel(Exception $exception): void` php]
+
+      Cancel all pending operations.
+
+      Any pending operation will fail with the given exception.
+
+      Future operations will continue execution as usual.
+
+      ```php
+      use Psl\Async;
+
+      $semaphore = new Async\Semaphore(1, static function(int $input): void {
+          Async\sleep(1);
+          return $input + 1;
+      });
+
+      $one = Async\run(fn() => $semaphore->waitFor(1));
+      $two = Async\run(fn() => $semaphore->waitFor(2));
+
+      $semaphore->cancel(new Exception('foo'));
+
+      $one->await(); // 2
+      $two->await(); // throws `Exception` with message `foo`
+      ```
+
+  </div>
+
+* [`final class Async\Sequence<Tin, Tout>` php]
+
+  Run an operation with a limit on number of ongoing asynchronous jobs of 1.
+
+  Just like [`Async\Semaphore` php], all operations must have the same input type ([`Tin` php]) and output type ([`Tout` php]), and be processed by the same function;
+
+  ```php
+  use Psl\Async;
+  use Psl\IO;
+
+  $sequence = new Async\Sequence(static function(int $input): void {
+    IO\write_error_line('> started : %d', $input);
+    Async\sleep(1);
+    IO\write_error_line('> finished: %d', $input);
+  });
+
+  Async\concurrently([
+    fn() => $sequence->waitFor(1),
+    fn() => $sequence->waitFor(2),
+    fn() => $sequence->waitFor(3),
+  ]);
+
+  // Output:
+  // > started: 1
+  // > finished: 1
+  // > started: 2
+  // > finished: 2
+  // > started: 3
+  // > finished: 3
+  ```
+
+  <div class="api-methods">
+
+    * [`Sequence::waitFor(Tin $input): Tout` php]
+
+      Run the operation using the given [`$input` php], after all previous operations have completed.
+
+      ```php
+      use Psl\Async;
+
+      $s = new Async\Sequence(static function(int $input): void {
+          Async\sleep(1);
+          return $input + 1;
+      });
+
+      $results = Async\concurrently([fn() => $s->waitFor(1), fn() => $s->waitFor(2), fn() => $s->waitFor(3)]); // [2, 3, 4]
+      ```
+
+    * [`Sequence::cancel(Exception $exception): void` php]
+
+      Cancel all pending operations.
+
+      Any pending operation will fail with the given exception.
+
+      Future operations will continue execution as usual.
+
+      ```php
+      use Psl\Async;
+
+      $s = new Async\Sequence(static function(int $input): void {
+          Async\sleep(1);
+          return $input + 1;
+      });
+
+      $one = Async\run(fn() => $s->waitFor(1));
+      $two = Async\run(fn() => $s->waitFor(2));
+
+      $s->cancel(new Exception('foo'));
+
+      $one->await(); // 2
+      $two->await(); // throws `Exception` with message `foo`
+      ```
 
   </div>
 
@@ -854,6 +1012,7 @@ Async\main(static function(): int {
     see [revolt documentation](https://revolt.run/fundamentals) for more information.
 
   </div>
+
 </div>
 
 ### Exceptions
