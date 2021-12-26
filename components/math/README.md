@@ -451,7 +451,7 @@ $c = Math\tan(2); // tan(2)
   ```
 
 * [`@template T` php] <br />
-  [`Math\max_by(iterable<T> $numbers, (callable(T $value): numeric) $numeric_function): ?T` php]
+  [`Math\max_by(iterable<T> $numbers, (Closure(T $value): numeric) $numeric_function): ?T` php]
 
   Returns the largest element of the given iterable, or null if the iterable is empty. <br />
   The value for comparison is determined by the given function. <br />
@@ -469,7 +469,7 @@ $c = Math\tan(2); // tan(2)
   ```
 
 * [`@template T` php] <br />
-  [`Math\min_by(iterable<T> $numbers, (callable(T $value): numeric) $numeric_function): ?T` php]
+  [`Math\min_by(iterable<T> $numbers, (Closure(T $value): numeric) $numeric_function): ?T` php]
 
   Returns the smallest element of the given iterable, or null if the iterable is empty. <br />
   The value for comparison is determined by the given function. <br />

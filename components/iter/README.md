@@ -23,7 +23,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 <div class="api-functions">
 
 * [`@template T` php] <br/>
-  [`Iter\all(iterable<T> $iterable, (callable(T): bool) $predicate): bool` php]
+  [`Iter\all(iterable<T> $iterable, (Closure(T): bool) $predicate): bool` php]
 
   Returns true if all values in the iterable satisfy the predicate.
 
@@ -46,7 +46,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   ```
 
 * [`@template T` php] <br/>
-  [`Iter\any(iterable<T> $iterable, (callable(T): bool) $predicate): bool` php]
+  [`Iter\any(iterable<T> $iterable, (Closure(T): bool) $predicate): bool` php]
 
   Returns true if any value in the iterable satisfies the predicate.
 
@@ -69,9 +69,9 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   ```
 
 * [`@template T` php] <br/>
-  [`Iter\apply(iterable<T> $iterable, (callable(T): void) $function): void` php]
+  [`Iter\apply(iterable<T> $iterable, (Closure(T): void) $function): void` php]
 
-  Applies a function to all values of an iterable.
+  Applies [`$function` php] to all values of the given [`$iterable` php].
 
   * [`$iterable` php]: The iterable to apply the function to.
   * [`$function` php]: The function to apply to each element.
@@ -266,7 +266,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 
 * [`@template T` php] <br/>
   [`@template Ts` php] <br/>
-  [`Iter\reduce(iterable<T> $iterable, (callable(Ts, T): Ts) $function, Ts $initial): Ts` php]
+  [`Iter\reduce(iterable<T> $iterable, (Closure(Ts, T): Ts) $function, Ts $initial): Ts` php]
 
   Reduces an iterable to a single value.
 
@@ -292,7 +292,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 * [`@template Tk` php] <br/>
   [`@template Tv` php] <br/>
   [`@template Ts` php] <br/>
-  [`Iter\reduce_keys(iterable<Tk, Tv> $iterable, (callable(Ts, Tk): Ts) $function, Ts $initial): Ts` php]
+  [`Iter\reduce_keys(iterable<Tk, Tv> $iterable, (Closure(Ts, Tk): Ts) $function, Ts $initial): Ts` php]
 
   Reduces an iterable to a single value.
 
@@ -318,7 +318,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 * [`@template Tk` php] <br/>
   [`@template Tv` php] <br/>
   [`@template Ts` php] <br/>
-  [`Iter\reduce_with_keys(iterable<Tk, Tv> $iterable, (callable(Ts, Tk, Tv): Ts) $function, Ts $initial): Ts` php]
+  [`Iter\reduce_with_keys(iterable<Tk, Tv> $iterable, (Closure(Ts, Tk, Tv): Ts) $function, Ts $initial): Ts` php]
 
   Reduces an iterable to a single value.
 
@@ -343,7 +343,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
   ```
 
 * [`@template T` php] <br/>
-  [`Iter\search(iterable<T> $iterable, (callable(T): bool) $predicate): ?int` php]
+  [`Iter\search(iterable<T> $iterable, (Closure(T): bool) $predicate): ?int` php]
 
   Searches an iterable until a predicate returns true, then returns the value of the matching element.
 
@@ -446,7 +446,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 
   * [`@template Tsk` php] <br />
     [`@template Tsv` php] <br />
-    [`static Iter\Iterator::from((callable(): iterable<Tsk, Tsv>) $factory): Iter\Iterator<Tsk, Tsv>` php]
+    [`static Iter\Iterator::from((Closure(): iterable<Tsk, Tsv>) $factory): Iter\Iterator<Tsk, Tsv>` php]
 
     Create an iterator from a factory.
 

@@ -39,15 +39,15 @@ Async\main(static function(): int {
 
 <div class="api-functions">
 
-* [`Async\main((callable(): int|Async\Awaitable<int>) $callable): never` php]
+* [`Async\main((Closure(): int|Async\Awaitable<int>) $closure): never` php]
 
-  Execute [`$callable` php] in an async context, then exit with returned exit code.
+  Execute [`$closure` php] in [`{main}` php] fiber, then exit with returned exit code.
 
-  If [`$callable` php] returns an [`Async\Awaitable` php], it *MUST* resolve with an exit code.
+  If [`$closure` php] returns an [`Async\Awaitable` php], it *MUST* resolve with an exit code.
 
-  After executing [`$callable` php], the event loop will keep running until there's no more callables to be executed.
+  After executing [`$closure` php], the event loop will keep running until there's no more callbacks to be executed.
 
-  * [`$callable` php]: The application entry point.
+  * [`$closure` php]: The application entry point.
 
   ```php
   use Psl\Async;
@@ -67,16 +67,13 @@ Async\main(static function(): int {
 
 
 * [`@template T` php] <br />
-  [`Async\run((callable(): T) $callable, ?float $timeout = null): Async\Awaitable<T>` php]
+  [`Async\run((Closure(): T) $closure): Async\Awaitable<T>` php]
 
-  Create a new fiber asynchronously using the given callable, and return an awaitable that resolves to the result of the callable.
+  Create a new fiber asynchronously using the given closure, and return an awaitable that resolves to the result of the closure.
 
-  If the callable throws an exception, the awaitable will fail with that exception.
+  If the closure throws an exception, the awaitable will fail with that exception.
 
-  If [`$timeout` php] is provided, the awaitable will fail with a [`Async\Exception\TimeoutException` php] if the callable does not complete within the given timeout.
-
-  * [`$callable` php]: The callable to execute.
-  * [`$timeout` php]: The timeout in seconds.
+  * [`$closure` php]: The closure to execute.
 
   ```php
   use Psl\Async;
@@ -99,20 +96,6 @@ Async\main(static function(): int {
     $result = $awaitable->await(); // throws Exception
   } catch (Exception $e) {
     // ... handle exception
-  }
-  ```
-
-  ```php
-  use Psl\Async;
-
-  $awaitable = Async\run(static function (): void {
-    Async\sleep(1);
-  }, timeout: 0.5);
-
-  try {
-    $awaitable->await(); // throws Async\Exception\TimeoutException
-  } catch (Async\Exception\TimeoutException $e) {
-    // The awaitable timed out.
   }
   ```
 
@@ -274,9 +257,9 @@ Async\main(static function(): int {
 
 * [`@template Tk of array-key` php] <br />
   [`@template Tv` php] <br />
-  [`Async\series(iterable<Tk, (callable(): Tv)> $functions): array<Tk, Tv>` php]
+  [`Async\series(iterable<Tk, (Closure(): Tv)> $tasks): array<Tk, Tv>` php]
 
-  Run the iterable of functions in series, each one running once the previous function has completed.
+  Run the functions in the tasks' iterable in series, each one running once the previous function has completed.
 
   If any functions in the series throws, no more functions are run, and the exception is immediately thrown.
 
@@ -293,9 +276,9 @@ Async\main(static function(): int {
 
 * [`@template Tk of array-key` php] <br />
   [`@template Tv` php] <br />
-  [`Async\concurrently(iterable<Tk, (callable(): Tv)> $functions): array<Tk, Tv>` php]
+  [`Async\concurrently(iterable<Tk, (Closure(): Tv)> $tasks): array<Tk, Tv>` php]
 
-  Run the iterable of functions concurrently, without waiting until the previous function has completed.
+  Run the functions in the tasks' iterable concurrently, without waiting until the previous function has completed.
 
   If one of the functions fails, the exception will be thrown immediately, and the result of the other functions will be ignored.
 
@@ -352,7 +335,7 @@ Async\main(static function(): int {
 
 * [`@pure` php] <br />
   [`@template T` php] <br />
-  [`Async\reflect((callable(): T) $function): (Closure(): Result\ResultInterface<T>)` php]
+  [`Async\reflect((Closure(): T) $function): (Closure(): Result\ResultInterface<T>)` php]
 
   Wraps the given function in another function that always completes with a [`Result\Success` php],
   or [`Result\Failure` php] if the original function throws.
@@ -645,7 +628,7 @@ Async\main(static function(): int {
 
   All operations must have the same input type ([`Tin` php]) and output type ([`Tout` php]), and be processed by the same function;
 
-  [`Tin` php] may be a callable invoked by the [`$operation` php] for maximum flexibility, however this pattern is best avoided in favor of creating semaphores with a more narrow process.
+  [`Tin` php] may be a closure invoked by the [`$operation` php] for maximum flexibility, however this pattern is best avoided in favor of creating semaphores with a more narrow process.
 
   ```php
   use Psl\Async;
