@@ -36,7 +36,7 @@ while(true) {
 
 <div class="api-functions">
 
-* [`TCP\connect(non-empty-string $host, positive-int|0 $port, ?ConnectOptions $options = null, float $timeout = null): Network\StreamSocketInterface` php]
+* [`TCP\connect(non-empty-string $host, int<0, max> $port, ?ConnectOptions $options = null, float $timeout = null): Network\StreamSocketInterface` php]
 
   Connect to a TCP server.
   
@@ -71,7 +71,7 @@ while(true) {
 
   <div class="api-methods">
 
-  * [`TCP\Server::create(non-empty-string $host, positive-int $port, ?ServerOptions $options = null)` php]
+  * [`TCP\Server::create(non-empty-string $host, int<1, max> $port, ?ServerOptions $options = null)` php]
 
     Create a new TCP server.
 

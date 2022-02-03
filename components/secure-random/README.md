@@ -45,7 +45,7 @@ $random_string = SecureRandom\string(256);
   ```
 
 * [`@external-mutation-free` php] <br/>
-  [`SecureRandom\string(0|positive-int $length, ?string $alphabet = null): string` php]
+  [`SecureRandom\string(int<0, max> $length, ?string $alphabet = null): string` php]
 
   Returns a securely generated random string of the given length. <br />
   The string is composed of characters from the given alphabet string. <br />
@@ -69,7 +69,7 @@ $random_string = SecureRandom\string(256);
   ```
 
 * [`@external-mutation-free` php] <br/>
-  [`SecureRandom\bytes(0|positive-int $length): string` php]
+  [`SecureRandom\bytes(int<0, max> $length): string` php]
 
   Returns a securely generated random string of the given length. <br />
 

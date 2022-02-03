@@ -29,7 +29,7 @@ $message = $receiver->receive();
 <div class="api-functions">
 
 * [`@template T` php] <br />
-  [`Channel\bounded(positive-int $capacity): array{0: Channel\ReceiverInterface<T>, 1: Channel\SenderInterface<T>}` php]
+  [`Channel\bounded(int<1, max> $capacity): array{Channel\ReceiverInterface<T>, Channel\SenderInterface<T>}` php]
     
   Create a bounded channel with the given capacity.
   
@@ -86,7 +86,7 @@ $message = $receiver->receive();
 
   <div class="api-methods">
 
-  * [`ChannelInterface::getCapacity(): ?positive-int` php]
+  * [`ChannelInterface::getCapacity(): ?int<1, max>` php]
 
     Returns the capacity of the channel, or null if the channel is unbounded.
 
@@ -164,7 +164,7 @@ $message = $receiver->receive();
     Psl\invariant(false === $receiver->isFull(), 'Unbound channel is never full.');
     ```
 
-  * [`ChannelInterface::count(): 0|positive-int` php]
+  * [`ChannelInterface::count(): int<0, max>` php]
 
     Returns the number of items in the channel.
 

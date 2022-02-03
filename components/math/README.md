@@ -400,7 +400,7 @@ $c = Math\tan(2); // tan(2)
     ```
 
 * [`@pure` php] <br />
-  [`Math\to_base(0|positive-int $number, positive-int $base): non-empty-string` php]
+  [`Math\to_base(int<0, max> $number, int<2, 36> $base): non-empty-string` php]
 
     Converts the given non-negative integer to a string in base [`$base` php], using letters a-z for digits when [`$base` php] > 10. <br />
 

@@ -582,7 +582,7 @@ $result = Iter\reduce($iterator, static fn(int $carry, int $item) => $carry + $i
 
     ```
 
-  * [`Iter\Iterator::seek(0|positive-int $position): void` php]
+  * [`Iter\Iterator::seek(int<0, max> $position): void` php]
 
     Seek to the given position.
 

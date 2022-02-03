@@ -32,7 +32,7 @@ if (Runtime\has_extension('parallel')) {
   ```
 
 * [`@pure` php] <br />
-  [`Runtime\get_version_id(): positive-int` php]
+  [`Runtime\get_version_id(): int<80100, max>` php]
 
   Return the current PHP version as an integer, useful for version comparisons (e.g., int(80100) from version "8.1.0-RC5").
 
