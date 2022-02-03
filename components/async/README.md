@@ -317,40 +317,21 @@ Async\main(static function(): int {
   ]);
   ```
 
-  ?> use [`Async\reflect(...)` php] to continue the execution of other functions when a function fails.
+  ?> use [`Result\reflect(...)` php] to continue the execution of other functions when a function fails.
 
   ```php
   use Psl;
   use Psl\Async;
+  use Psl\Result;
   use Psl\Shell;
 
   [$version, $foo] = Async\concurrently([
-    Async\reflect(static fn() => Shell\execute('php', ['-v'])),
-    Async\reflect(static fn() => Shell\execute('php', ['-r', 'foo();'])),
+    Result\reflect(static fn() => Shell\execute('php', ['-v'])),
+    Result\reflect(static fn() => Shell\execute('php', ['-r', 'foo();'])),
   ]);
 
   Psl\invariant($version->isSucceeded(), '`$ php -v` should have succeeded.');
   Psl\invariant($foo->isFailed(), '`$ php -r "foo()"` should have failed.');
-  ```
-
-* [`@pure` php] <br />
-  [`@template T` php] <br />
-  [`Async\reflect((Closure(): T) $function): (Closure(): Result\ResultInterface<T>)` php]
-
-  Wraps the given function in another function that always completes with a [`Result\Success` php],
-  or [`Result\Failure` php] if the original function throws.
-
-  ```php
-  use Psl;
-  use Psl\Async;
-
-  $results = Async\concurrently([
-    Async\reflect(static fn() => 'hello'),
-    Async\reflect(static fn() => throw new Exception('Something went wrong!')),
-  ]);
-
-  Psl\invariant($results[0]->isSucceeded(), '`hello` should have succeeded.');
-  Psl\invariant($results[1]->isFailed(), '`Something went wrong!` should have failed.');
   ```
 
 * [`Async\sleep(float $seconds): void` php]
