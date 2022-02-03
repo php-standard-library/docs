@@ -46,14 +46,14 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
 
   [`Shell\execute(...)` php] waits for the underlying process output in a non-blocking manner, this means that while a process is running, the script will not block, and allows other I/O operations to be performed.
 
-  This non-blocking nature is useful when you want to execute a lot of commands in parallel, and you don't want to block the script.
+  This non-blocking nature is useful when you want to execute a lot of commands concurrently, and you don't want to block the script.
 
   ```php
   use Psl\Async;
   use Psl\Shell;
 
-  // execute `sleep 1` 4 times in parallel
-  Async\parallel([
+  // execute `sleep 1` 4 times concurrently
+  Async\concurrently([
     fn() => Shell\execute('sleep', arguments: ['1']),
     fn() => Shell\execute('sleep', arguments: ['1']),
     fn() => Shell\execute('sleep', arguments: ['1']),
@@ -61,7 +61,7 @@ $result = Shell\execute('echo', arguments: ['Hello, World!']); // Hello, World!
   ]);
   ```
 
-  All commands in the example above will be executed in parallel, and the script will finish in ~1 second.
+  All commands in the example above will be executed concurrently, and the script will finish in ~1 second.
 
   We can also set a timeout for the read operation, and if the process is still running after the timeout, [`Shell\Exception\TimeoutException` php] will be thrown.
 
